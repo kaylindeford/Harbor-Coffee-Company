@@ -1143,6 +1143,9 @@ function goToOrder(){
   document.getElementById('pageMenu').style.display = 'none';
   document.getElementById('pageOrder').style.display = '';
   window.scrollTo(0,0);
+  if (cart.length === 0 && typeof setOrderMode === 'function') {
+    setOrderMode('onetime');
+  }
 }
 function goToHome(){
   document.getElementById('pageOrder').style.display = 'none';
@@ -1155,6 +1158,9 @@ function goToMenu(){
   document.getElementById('pageOrder').style.display = 'none';
   document.getElementById('pageMenu').style.display = '';
   window.scrollTo(0,0);
+  if (cart.length === 0 && typeof setOrderMode === 'function') {
+    setOrderMode('onetime');
+  }
   renderMenuPage();
 }
 function goToSquare(url){
@@ -1803,13 +1809,13 @@ async function submitToSquare(){
     });
     const data = await res.json();
     if (!res.ok || !data.url){
-      throw new Error((data && data.error) || 'Could not start checkout');
+      throw new Error((data && (data.details || data.error)) || 'Could not start checkout');
     }
     window.location.href = data.url;
   } catch (err){
     btn.classList.remove('loading');
     btn.textContent = isSub ? 'Start Subscription' : 'Place Order';
-    errorEl.textContent = "We couldn't connect to Square checkout just now. Please try again in a moment.";
+    errorEl.textContent = "We couldn't connect to Square checkout: " + err.message;
     errorEl.classList.add('show');
   }
 }
