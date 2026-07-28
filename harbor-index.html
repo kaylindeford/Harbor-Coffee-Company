@@ -1,0 +1,1963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harbor Coffee | Cedar Valley Coffee Subscription</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --cream:#FAF6EE;
+    --navy:#16283D;
+    --harbor-blue:#C9DBEA;
+    --harbor-blue-soft:#E4EDF5;
+    --mid-blue:#3E6E93;
+    --white:#FFFFFF;
+    --line: rgba(22,40,61,0.12);
+    --good: #4F8A6A;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'Inter', -apple-system, sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);
+    background:var(--cream);
+    color:var(--navy);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+  a{color:inherit; text-decoration:none;}
+  a[onclick]{ cursor:pointer; }
+  button{font-family:inherit; cursor:pointer;}
+  img,svg{display:block;}
+  input,textarea{ font-family:inherit; }
+
+  /* ============================================================ */
+  /* PAGE: HOME */
+  /* ============================================================ */
+
+  #pageHome .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  @media (max-width:640px){ #pageHome .wrap{padding:0 22px;} }
+
+  .eyebrow{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:500;
+    font-size:14px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--mid-blue);
+    display:inline-block;
+    margin-bottom:18px;
+  }
+
+  /* ---------- NAV ---------- */
+  #pageHome header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:transparent;
+    border-bottom:1px solid transparent;
+    transition:background .4s cubic-bezier(.4,0,.2,1), border-color .4s ease, box-shadow .4s ease;
+  }
+  #pageHome header.scrolled{
+    background:rgba(250,246,238,0.94);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+    box-shadow:0 1px 24px rgba(22,40,61,0.05);
+  }
+  #pageHome nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:26px 32px;
+    max-width:1180px; margin:0 auto;
+    transition:padding .4s cubic-bezier(.4,0,.2,1);
+  }
+  #pageHome header.scrolled nav{ padding:14px 32px; }
+  #pageHome .logo{
+    display:flex; flex-direction:column; align-items:flex-start; line-height:1;
+  }
+  #pageHome .logo .word{
+    font-family:var(--serif); font-weight:800; font-size:26px; color:var(--navy);
+    letter-spacing:-0.01em;
+    transition:font-size .4s cubic-bezier(.4,0,.2,1), color .4s ease;
+  }
+  #pageHome header.scrolled .logo .word{ font-size:21px; color:var(--navy); }
+  #pageHome .logo .sub{
+    font-size:9.5px; letter-spacing:0.32em; color:var(--mid-blue); margin-top:2px;
+    font-weight:500; transition:color .4s ease;
+  }
+  #pageHome header.scrolled .logo .sub{ color:var(--mid-blue); }
+  .nav-links{ display:flex; align-items:center; gap:40px; }
+  .nav-links a{
+    font-size:14px; font-weight:500; color:var(--navy); position:relative; padding:4px 0;
+  }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; right:0; bottom:0; height:1px; background:var(--navy);
+    transform:scaleX(0); transform-origin:right; transition:transform .3s ease;
+  }
+  .nav-links a:hover::after{ transform:scaleX(1); transform-origin:left; }
+  .nav-cta{
+    background:var(--navy); color:var(--cream) !important; padding:11px 24px; border-radius:100px;
+    font-size:13.5px; font-weight:600; letter-spacing:0.02em;
+    transition:transform .25s ease, background .25s ease;
+  }
+  .nav-cta:hover{ background:var(--mid-blue); transform:translateY(-1px); }
+  .nav-cta::after{ display:none; }
+  .menu-toggle{ display:none; }
+  @media (max-width:820px){
+    .nav-links{
+      position:fixed; top:0; right:0; height:100vh; width:78%; max-width:320px;
+      background:var(--white); flex-direction:column; align-items:flex-start; justify-content:center;
+      gap:28px; padding:40px; transform:translateX(100%); transition:transform .4s cubic-bezier(.4,0,.2,1);
+      box-shadow:-10px 0 40px rgba(22,40,61,0.08);
+    }
+    .nav-links.open{ transform:translateX(0); }
+    .nav-links a{ font-size:20px; }
+    .nav-links .nav-cta{
+      background:none; color:var(--mid-blue) !important; padding:0; border-radius:0;
+      font-family:var(--serif); font-weight:700; font-size:22px; box-shadow:none;
+    }
+    .nav-links .nav-cta:hover{ background:none; transform:none; }
+    .menu-toggle{
+      display:flex; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer;
+      padding:8px; z-index:101;
+    }
+    .menu-toggle span{ width:22px; height:2px; background:var(--navy); transition:all .3s ease; display:block; }
+    .menu-toggle.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+    .menu-toggle.open span:nth-child(2){ opacity:0; }
+    .menu-toggle.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex; align-items:center;
+    position:relative;
+    padding:160px 0 100px;
+    background:
+      repeating-linear-gradient(90deg, var(--harbor-blue-soft) 0 64px, transparent 64px 128px),
+      var(--cream);
+  }
+  .hero::before{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(250,246,238,0.15) 0%, var(--cream) 88%);
+  }
+  .hero-inner{ position:relative; z-index:2; text-align:center; margin:0 auto; }
+  .hero h1{
+    font-family:var(--serif); font-weight:700; font-size:clamp(42px, 7.4vw, 92px);
+    line-height:1.02; letter-spacing:-0.02em; color:var(--navy);
+    max-width:900px; margin:0 auto 28px;
+  }
+  .hero h1 em{ font-style:italic; color:var(--mid-blue); font-weight:600; }
+  .hero p{
+    font-size:clamp(16px,2vw,19px); color:rgba(22,40,61,0.7); max-width:520px; margin:0 auto 44px;
+    line-height:1.6; font-weight:400;
+  }
+  .btn-row{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+  .btn-primary{
+    background:var(--navy); color:var(--cream); padding:17px 38px; border-radius:100px;
+    font-size:15px; font-weight:600; letter-spacing:0.01em; display:inline-block;
+    transition:transform .25s ease, background .25s ease, box-shadow .25s ease;
+    box-shadow:0 8px 24px rgba(22,40,61,0.18);
+  }
+  .btn-primary:hover{ background:var(--mid-blue); transform:translateY(-2px); box-shadow:0 12px 28px rgba(22,40,61,0.22); }
+  .btn-ghost{
+    border:1px solid var(--line); color:var(--navy); padding:16px 34px; border-radius:100px;
+    font-size:15px; font-weight:500; display:inline-block; transition:all .25s ease; background:var(--white);
+  }
+  .btn-ghost:hover{ border-color:var(--navy); transform:translateY(-2px); }
+
+  .hero-mark{
+    margin:70px auto 0; display:flex; justify-content:center; gap:34px; flex-wrap:wrap;
+    font-family:var(--serif); font-style:italic; font-size:13px; color:rgba(22,40,61,0.45); letter-spacing:0.02em;
+  }
+
+  /* ---------- fade in ---------- */
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+  .reveal.visible{ opacity:1; transform:translateY(0); }
+  .stagger .reveal:nth-child(1){transition-delay:0s;}
+  .stagger .reveal:nth-child(2){transition-delay:.1s;}
+  .stagger .reveal:nth-child(3){transition-delay:.2s;}
+  .stagger .reveal:nth-child(4){transition-delay:.3s;}
+
+  section{ padding:130px 0; }
+  @media (max-width:640px){ section{ padding:88px 0; } }
+
+  .section-head{ text-align:center; max-width:640px; margin:0 auto 76px; }
+  .section-head h2{
+    font-family:var(--serif); font-weight:700; font-size:clamp(30px,4vw,48px);
+    letter-spacing:-0.01em; line-height:1.1;
+  }
+  .section-head p{ margin-top:18px; font-size:17px; color:rgba(22,40,61,0.62); line-height:1.6; }
+
+  /* ---------- ABOUT ---------- */
+  .about{ background:var(--white); }
+  .about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+  @media (max-width:900px){ .about-grid{ grid-template-columns:1fr; gap:48px; } }
+  .about-copy p{ font-size:22px; font-family:var(--serif); font-style:italic; font-weight:500; line-height:1.5; color:rgba(22,40,61,0.8); }
+  .about-visual{
+    aspect-ratio:4/5; border-radius:24px; position:relative; overflow:hidden;
+    background:repeating-linear-gradient(90deg, var(--harbor-blue) 0 40px, var(--harbor-blue-soft) 40px 80px);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .about-visual svg{ width:46%; height:auto; }
+
+  /* ---------- MENU REVEAL ---------- */
+  .menu-reveal{ background:var(--cream); }
+  .reveal-pop{ transform:translateY(28px) scale(0.94); }
+  .reveal-pop.visible{ transform:translateY(0) scale(1); }
+  .reveal-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  @media (max-width:760px){ .reveal-grid{ grid-template-columns:1fr; } }
+  .reveal-tile{
+    background:var(--white); border-radius:26px; padding:0 0 26px; text-align:center; cursor:pointer;
+    border:1px solid var(--line); overflow:hidden;
+    transition:transform .4s cubic-bezier(.4,0,.2,1), box-shadow .4s ease;
+  }
+  .reveal-tile:hover{ transform:translateY(-10px) scale(1.02); box-shadow:0 30px 60px rgba(22,40,61,0.12); }
+  .reveal-photo{
+    aspect-ratio:1/1; background:var(--harbor-blue-soft); display:flex; align-items:center; justify-content:center;
+    margin-bottom:22px; transition:background .3s ease;
+  }
+  .reveal-photo svg{ width:34%; height:34%; }
+  .reveal-tile:hover .reveal-photo{ background:var(--harbor-blue); }
+  .reveal-tile h3{ font-family:var(--serif); font-size:22px; font-weight:600; }
+  .reveal-cta{ text-align:center; margin-top:56px; }
+
+  /* ---------- FULFILLMENT ---------- */
+  .fulfillment{ background:var(--navy); color:var(--cream); }
+  .fulfillment .section-head h2{ color:var(--cream); }
+  .fulfill-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+  @media (max-width:760px){ .fulfill-grid{ grid-template-columns:1fr; } }
+  .fulfill-card{ text-align:center; padding:8px 12px; }
+  .fulfill-card .icon-wrap{
+    width:64px; height:64px; border-radius:50%; border:1px solid rgba(250,246,238,0.22); margin:0 auto 22px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .fulfill-card svg{ width:26px; height:26px; }
+  .fulfill-card h4{ font-family:var(--serif); font-size:20px; font-weight:600; margin-bottom:8px; }
+  .fulfill-card .teaser{ font-size:14px; color:rgba(250,246,238,0.6); margin-bottom:16px; }
+  .learn-toggle{
+    background:none; border:1px solid rgba(250,246,238,0.28); color:var(--cream); font-size:12.5px; font-weight:600;
+    padding:8px 18px; border-radius:100px; transition:all .2s ease;
+  }
+  .learn-toggle:hover{ border-color:var(--cream); }
+  .learn-toggle .chev{ display:inline-block; transition:transform .25s ease; margin-left:2px; }
+  .learn-toggle.open .chev{ transform:rotate(45deg); }
+  .fulfill-detail{
+    max-height:0; overflow:hidden; font-size:13.5px; color:rgba(250,246,238,0.65); line-height:1.6;
+    transition:max-height .35s ease, margin .35s ease; margin-top:0;
+  }
+  .fulfill-detail.open{ max-height:160px; margin-top:16px; }
+
+  /* ---------- FOUNDER NOTE ---------- */
+  .founder{ background:var(--harbor-blue-soft); }
+  .founder-inner{ max-width:700px; margin:0 auto; text-align:center; }
+  .founder blockquote{
+    font-family:var(--serif); font-style:italic; font-weight:500;
+    font-size:clamp(22px,3.2vw,32px); line-height:1.5; color:var(--navy);
+  }
+  .founder-attr{ margin-top:32px; font-size:14px; color:var(--mid-blue); font-weight:600; letter-spacing:0.02em; }
+  .founder-attr span{ display:block; font-weight:400; color:rgba(22,40,61,0.5); margin-top:2px; }
+
+  /* ---------- FINAL CTA ---------- */
+  .final-cta{ background:var(--cream); text-align:center; }
+  .final-cta h2{
+    font-family:var(--serif); font-weight:700; font-size:clamp(34px,5.6vw,64px); line-height:1.05;
+    letter-spacing:-0.02em; max-width:780px; margin:0 auto 24px;
+  }
+  .final-cta p{ font-size:17px; color:rgba(22,40,61,0.62); margin-bottom:44px; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background:var(--navy); color:rgba(250,246,238,0.7); padding:80px 0 32px; }
+  .footer-top{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:48px; padding-bottom:64px; border-bottom:1px solid rgba(250,246,238,0.12); }
+  @media (max-width:820px){ .footer-top{ grid-template-columns:1fr 1fr; row-gap:44px; } }
+  @media (max-width:520px){ .footer-top{ grid-template-columns:1fr; } }
+  .footer-logo{ font-family:var(--serif); font-weight:800; font-size:24px; color:var(--cream); margin-bottom:14px; }
+  .footer-top p{ font-size:14px; line-height:1.7; max-width:280px; color:rgba(250,246,238,0.5); }
+  .footer-col h5{ font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(250,246,238,0.4); margin-bottom:18px; font-weight:600; }
+  .footer-col a, .footer-col p{ display:block; font-size:14.5px; margin-bottom:12px; color:rgba(250,246,238,0.75); }
+  .footer-col a:hover{ color:var(--harbor-blue); }
+  .footer-bottom{ display:flex; justify-content:space-between; align-items:center; padding-top:32px; font-size:13px; color:rgba(250,246,238,0.4); flex-wrap:wrap; gap:12px; }
+  .footer-bottom a{ color:rgba(250,246,238,0.4); margin-left:20px; }
+  .footer-bottom a:hover{ color:var(--cream); }
+
+
+  /* ============================================================ */
+  /* PAGE: ORDER */
+  /* ============================================================ */
+
+  #pageOrder .wrap{max-width:1080px; margin:0 auto; padding:0 28px;}
+  @media (max-width:640px){ #pageOrder .wrap{padding:0 18px;} }
+
+  /* ---------- HEADER ---------- */
+  #pageOrder header{
+    position:sticky; top:0; z-index:60; background:rgba(250,246,238,0.9); backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  #pageOrder nav{ display:flex; align-items:center; justify-content:space-between; padding:18px 28px; max-width:1080px; margin:0 auto; }
+  #pageOrder .logo{ display:flex; flex-direction:column; line-height:1; }
+  #pageOrder .logo .word{ font-family:var(--serif); font-weight:800; font-size:22px; color:var(--navy); }
+  #pageOrder .logo .sub{ font-size:9px; letter-spacing:0.32em; color:var(--mid-blue); margin-top:2px; font-weight:500; }
+  .back-link{ font-size:13.5px; font-weight:500; color:var(--mid-blue); display:flex; align-items:center; gap:6px; }
+  .cart-btn{
+    position:relative; display:flex; align-items:center; gap:10px; background:var(--navy); color:var(--cream);
+    border:none; padding:11px 18px; border-radius:100px; font-size:13.5px; font-weight:600;
+    transition:transform .2s ease, background .2s ease;
+  }
+  .cart-btn:hover{ background:var(--mid-blue); transform:translateY(-1px); }
+  .cart-btn .badge{
+    background:var(--cream); color:var(--navy); font-size:11px; font-weight:700; min-width:18px; height:18px;
+    border-radius:50%; display:flex; align-items:center; justify-content:center; padding:0 4px;
+  }
+
+  /* ---------- HERO ---------- */
+  .order-hero{ padding:56px 0 40px; text-align:center; }
+  .order-hero .eyebrow{
+    font-family:var(--serif); font-style:italic; font-size:13.5px; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--mid-blue); display:block; margin-bottom:14px;
+  }
+  .order-hero h1{ font-family:var(--serif); font-weight:700; font-size:clamp(30px,5vw,46px); letter-spacing:-0.01em; margin-bottom:12px; }
+  .order-hero p{ color:rgba(22,40,61,0.6); font-size:15.5px; max-width:440px; margin:0 auto; }
+  .mode-toggle{
+    display:inline-flex; margin:28px auto 0; background:var(--white); border:1px solid var(--line);
+    border-radius:100px; padding:5px; gap:4px;
+  }
+  .mode-btn{
+    border:none; background:none; padding:11px 22px; border-radius:100px; font-size:13.5px; font-weight:600;
+    color:var(--navy); transition:all .2s ease;
+  }
+  .mode-btn.active{ background:var(--navy); color:var(--cream); }
+  .mode-note{ font-size:13px; color:var(--mid-blue); margin-top:14px; min-height:18px; font-weight:500; }
+  .sub-tag{
+    display:inline-block; font-size:10.5px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--mid-blue); background:var(--harbor-blue-soft); padding:3px 9px; border-radius:100px; margin-top:6px;
+  }
+
+  /* ---------- BUNDLE & SAVE ---------- */
+  .bundle-section{ padding:14px 0 76px; }
+  .bundle-head{ text-align:center; margin-bottom:32px; }
+  .bundle-head .eyebrow{
+    font-family:var(--serif); font-style:italic; font-size:13.5px; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--mid-blue); display:block; margin-bottom:10px;
+  }
+  .bundle-head h2{ font-family:var(--serif); font-weight:700; font-size:clamp(24px,3.6vw,34px); margin-bottom:10px; }
+  .bundle-head p{ color:rgba(22,40,61,0.55); font-size:14.5px; max-width:440px; margin:0 auto; }
+  .bundle-tabs{ display:flex; justify-content:center; margin:22px 0 34px; }
+  .bundle-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+  @media (max-width:900px){ .bundle-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:480px){ .bundle-grid{ grid-template-columns:1fr; } }
+  .bundle-card{
+    background:var(--white); border:1px solid var(--line); border-radius:20px; padding:26px 22px; text-align:center;
+    display:flex; flex-direction:column; position:relative; transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .bundle-card:hover{ transform:translateY(-6px); box-shadow:0 20px 40px rgba(22,40,61,0.08); }
+  .bundle-card.best{ border-color:var(--navy); }
+  .best-tag{
+    position:absolute; top:-11px; left:50%; transform:translateX(-50%); background:var(--navy); color:var(--cream);
+    font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding:5px 12px; border-radius:100px;
+    white-space:nowrap;
+  }
+  .bundle-card .pack-label{ font-family:var(--serif); font-size:18px; font-weight:600; margin-bottom:4px; margin-top:6px; }
+  .bundle-card .pack-qty{ font-size:12px; color:rgba(22,40,61,0.5); margin-bottom:16px; }
+  .bundle-card .pack-price{ font-family:var(--serif); font-size:30px; font-weight:700; margin-bottom:4px; }
+  .bundle-card .per-can{ font-size:12.5px; color:rgba(22,40,61,0.55); margin-bottom:10px; }
+  .savings-badge{
+    display:inline-block; font-size:11px; font-weight:700; color:var(--good); background:rgba(79,138,106,0.1);
+    padding:4px 11px; border-radius:100px; margin:0 auto 18px;
+  }
+  .btn-buy{
+    background:var(--navy); color:var(--cream); border:none; padding:13px 0; border-radius:100px; font-size:13.5px;
+    font-weight:600; width:100%; transition:background .2s ease, transform .2s ease; display:block;
+  }
+  .btn-buy:hover{ background:var(--mid-blue); transform:translateY(-1px); }
+  .square-note{ text-align:center; font-size:12px; color:rgba(22,40,61,0.4); margin-top:26px; }
+  .square-note svg{ display:inline-block; vertical-align:-2px; margin-right:5px; }
+
+  /* ---------- DRINK GRID ---------- */
+  .drink-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(260px,1fr)); gap:22px; padding:8px 0 90px; }
+  .drink-card{
+    background:var(--white); border:1px solid var(--line); border-radius:22px; padding:26px; display:flex; flex-direction:column;
+    transition:box-shadow .3s ease, transform .3s ease;
+  }
+  .drink-card:hover{ box-shadow:0 20px 40px rgba(22,40,61,0.08); transform:translateY(-4px); }
+  .drink-photo{
+    aspect-ratio:1/1; border-radius:16px; margin-bottom:18px; display:flex; align-items:center; justify-content:center;
+  }
+  .drink-photo svg{ width:56%; height:56%; }
+  .drink-card h3{ font-family:var(--serif); font-size:19px; font-weight:600; margin-bottom:6px; }
+  .drink-card .desc{ font-size:13px; color:rgba(22,40,61,0.55); line-height:1.55; margin-bottom:14px; flex-grow:1; }
+  .drink-card .price-row{ display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+  .drink-card .price{ font-size:16px; font-weight:700; }
+  .drink-card .price span{ font-weight:400; font-size:12px; color:rgba(22,40,61,0.45); }
+  .qty-stepper{ display:flex; align-items:center; gap:12px; border:1px solid var(--line); border-radius:100px; padding:4px 6px; }
+  .qty-stepper button{
+    width:26px; height:26px; border-radius:50%; border:none; background:var(--harbor-blue-soft); color:var(--navy);
+    font-size:15px; font-weight:700; display:flex; align-items:center; justify-content:center; line-height:0;
+  }
+  .qty-stepper button:hover{ background:var(--harbor-blue); }
+  .qty-stepper span{ font-size:14px; font-weight:600; min-width:14px; text-align:center; }
+  .btn-customize{
+    background:var(--navy); color:var(--cream); border:none; padding:13px 0; border-radius:100px; font-size:14px;
+    font-weight:600; width:100%; transition:background .2s ease, transform .2s ease;
+  }
+  .btn-customize:hover{ background:var(--mid-blue); transform:translateY(-1px); }
+
+  /* ---------- OVERLAY SCAFFOLD ---------- */
+  .scrim{
+    position:fixed; inset:0; background:rgba(22,40,61,0.4); z-index:80; opacity:0; pointer-events:none;
+    transition:opacity .3s ease; backdrop-filter:blur(2px);
+  }
+  .scrim.show{ opacity:1; pointer-events:auto; }
+
+  .panel{
+    position:fixed; top:0; right:0; height:100%; width:460px; max-width:92vw; background:var(--white); z-index:90;
+    transform:translateX(100%); transition:transform .4s cubic-bezier(.4,0,.2,1); display:flex; flex-direction:column;
+    box-shadow:-16px 0 50px rgba(22,40,61,0.15);
+  }
+  .panel.show{ transform:translateX(0); }
+  .panel-head{ display:flex; align-items:center; justify-content:space-between; padding:22px 26px; border-bottom:1px solid var(--line); }
+  .panel-head h2{ font-family:var(--serif); font-size:20px; font-weight:600; }
+  .close-btn{
+    width:34px; height:34px; border-radius:50%; border:none; background:var(--harbor-blue-soft); font-size:16px;
+    display:flex; align-items:center; justify-content:center; color:var(--navy);
+  }
+  .close-btn:hover{ background:var(--harbor-blue); }
+  .panel-body{ flex:1; overflow-y:auto; padding:22px 26px; }
+  .panel-foot{ padding:20px 26px 26px; border-top:1px solid var(--line); }
+
+  /* option groups */
+  .opt-group{ margin-bottom:28px; }
+  .opt-group h4{ font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(22,40,61,0.45); font-weight:600; margin-bottom:12px; }
+  .opt-pills{ display:flex; flex-wrap:wrap; gap:8px; }
+  .pill{
+    border:1px solid var(--line); background:var(--white); padding:9px 16px; border-radius:100px; font-size:13.5px;
+    font-weight:500; color:var(--navy); transition:all .2s ease;
+  }
+  .pill:hover{ border-color:var(--mid-blue); }
+  .pill.active{ background:var(--navy); border-color:var(--navy); color:var(--cream); }
+  .pill.disabled{ opacity:0.35; pointer-events:none; }
+  .opt-row{ display:flex; align-items:center; justify-content:space-between; padding:10px 0; border-bottom:1px solid rgba(22,40,61,0.06); }
+  .opt-row:last-child{ border-bottom:none; }
+  .opt-row .name{ font-size:14px; font-weight:500; }
+  .mini-stepper{ display:flex; align-items:center; gap:10px; }
+  .mini-stepper button{
+    width:24px; height:24px; border-radius:50%; border:1px solid var(--line); background:var(--white); font-size:13px;
+    font-weight:700; display:flex; align-items:center; justify-content:center; color:var(--navy);
+  }
+  .mini-stepper button:hover{ border-color:var(--mid-blue); }
+  .mini-stepper span{ font-size:13.5px; font-weight:600; min-width:14px; text-align:center; }
+  .check-row{ display:flex; align-items:center; gap:10px; padding:9px 0; }
+  .check-row input{ width:17px; height:17px; accent-color:var(--navy); }
+  .check-row label{ font-size:14px; }
+  textarea{
+    width:100%; border:1px solid var(--line); border-radius:14px; padding:14px; font-size:13.5px; resize:vertical;
+    min-height:80px; background:var(--cream);
+  }
+  textarea:focus, input:focus{ outline:2px solid var(--mid-blue); outline-offset:1px; }
+
+  .sub-notice{
+    background:var(--harbor-blue-soft); border:1px solid var(--harbor-blue); border-radius:14px; padding:16px 18px;
+    font-size:13px; line-height:1.6; color:var(--navy); margin:16px 0; display:none;
+  }
+  .sub-notice.show{ display:block; }
+  .sub-notice strong{ display:block; font-family:var(--serif); font-size:14px; margin-bottom:6px; }
+
+  .panel-total{ display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+  .panel-total .label{ font-size:13px; color:rgba(22,40,61,0.55); }
+  .panel-total .amt{ font-family:var(--serif); font-size:24px; font-weight:700; }
+  .btn-full{
+    width:100%; background:var(--navy); color:var(--cream); border:none; padding:16px 0; border-radius:100px;
+    font-size:15px; font-weight:600; transition:background .2s ease;
+  }
+  .btn-full:hover{ background:var(--mid-blue); }
+  .btn-full.secondary{ background:var(--white); color:var(--navy); border:1px solid var(--line); }
+  .btn-full.secondary:hover{ background:var(--harbor-blue-soft); border-color:var(--harbor-blue-soft); }
+
+  /* ---------- CART ITEMS ---------- */
+  .cart-item{ display:flex; gap:14px; padding:16px 0; border-bottom:1px solid rgba(22,40,61,0.08); }
+  .cart-item .thumb{
+    width:56px; height:56px; border-radius:12px; background:var(--harbor-blue-soft); flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .cart-item .thumb svg{ width:56%; }
+  .cart-item .info{ flex:1; }
+  .cart-item .info .name{ font-size:14.5px; font-weight:600; }
+  .cart-item .info .meta{ font-size:12px; color:rgba(22,40,61,0.55); line-height:1.55; margin-top:3px; }
+  .cart-item .info .actions{ display:flex; gap:14px; margin-top:8px; }
+  .cart-item .info .actions button{ background:none; border:none; font-size:12px; font-weight:600; color:var(--mid-blue); padding:0; }
+  .cart-item .info .actions button.remove{ color:#B5544A; }
+  .cart-item .price{ font-size:14px; font-weight:700; white-space:nowrap; }
+
+  .empty-state{ text-align:center; padding:60px 20px; color:rgba(22,40,61,0.45); font-size:14px; }
+
+  .totals{ margin-top:6px; }
+  .totals .row{ display:flex; justify-content:space-between; font-size:13.5px; color:rgba(22,40,61,0.6); padding:5px 0; }
+  .totals .row.grand{ font-size:17px; font-weight:700; color:var(--navy); padding-top:12px; margin-top:6px; border-top:1px solid var(--line); }
+
+  /* ---------- FULLSCREEN STEP SCREENS ---------- */
+  .step-screen{
+    position:fixed; inset:0; background:var(--cream); z-index:95; overflow-y:auto; transform:translateY(100%);
+    transition:transform .4s cubic-bezier(.4,0,.2,1);
+  }
+  .step-screen.show{ transform:translateY(0); }
+  .step-head{
+    position:sticky; top:0; background:rgba(250,246,238,0.92); backdrop-filter:blur(14px); border-bottom:1px solid var(--line);
+    display:flex; align-items:center; gap:16px; padding:20px 28px; z-index:2;
+  }
+  .step-head .back{ width:38px; height:38px; border-radius:50%; background:var(--white); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:16px; }
+  .step-head h2{ font-family:var(--serif); font-size:21px; font-weight:600; }
+  .step-body{ max-width:640px; margin:0 auto; padding:40px 28px 120px; }
+
+  /* calendar */
+  .date-scroll{ display:flex; gap:10px; overflow-x:auto; padding:4px 2px 10px; margin-bottom:32px; }
+  .date-chip{
+    flex:0 0 auto; width:64px; padding:14px 0; border-radius:16px; border:1px solid var(--line); background:var(--white);
+    text-align:center; transition:all .2s ease;
+  }
+  .date-chip .dow{ font-size:11px; color:rgba(22,40,61,0.5); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px; }
+  .date-chip .num{ font-family:var(--serif); font-size:19px; font-weight:700; }
+  .date-chip.active{ background:var(--navy); border-color:var(--navy); }
+  .date-chip.active .dow, .date-chip.active .num{ color:var(--cream); }
+  .date-chip.disabled{ opacity:0.3; pointer-events:none; }
+
+  .slot-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  @media (max-width:460px){ .slot-grid{ grid-template-columns:repeat(2,1fr); } }
+  .slot{
+    padding:14px 0; border-radius:14px; border:1px solid var(--line); background:var(--white); font-size:14px;
+    font-weight:600; text-align:center; transition:all .2s ease;
+  }
+  .slot:hover{ border-color:var(--mid-blue); }
+  .slot.active{ background:var(--navy); border-color:var(--navy); color:var(--cream); }
+  .slot.disabled{ opacity:0.3; pointer-events:none; text-decoration:line-through; }
+  .slot-note{ font-size:13px; color:rgba(22,40,61,0.5); margin-bottom:16px; }
+  .closed-note{ text-align:center; padding:40px 0; color:rgba(22,40,61,0.5); font-size:14px; }
+
+  /* checkout form */
+  .field{ margin-bottom:18px; }
+  .field label{ display:block; font-size:12.5px; font-weight:600; color:rgba(22,40,61,0.55); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em; }
+  .field input{ width:100%; padding:14px 16px; border:1px solid var(--line); border-radius:12px; font-size:15px; background:var(--white); }
+  .pay-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:24px; }
+  .pay-opt{
+    border:1px solid var(--line); border-radius:14px; padding:16px; text-align:center; background:var(--white);
+    font-size:13.5px; font-weight:600; display:flex; flex-direction:column; align-items:center; gap:8px;
+  }
+  .pay-opt svg{ height:20px; }
+  .pay-opt.active{ border-color:var(--navy); background:var(--harbor-blue-soft); }
+
+  .square-checkout-note{
+    display:flex; align-items:flex-start; gap:10px; background:var(--harbor-blue-soft); border:1px solid var(--harbor-blue);
+    border-radius:14px; padding:14px 16px; font-size:13px; line-height:1.5; color:var(--navy); margin-bottom:20px;
+  }
+  .square-checkout-note svg{ flex-shrink:0; margin-top:1px; }
+  .checkout-error{
+    display:none; background:#FBEAEA; border:1px solid #E3B4AE; color:#B5544A; border-radius:12px; padding:12px 16px;
+    font-size:13px; margin-bottom:16px;
+  }
+  .checkout-error.show{ display:block; }
+  .btn-full.loading{ opacity:0.7; pointer-events:none; }
+
+  .summary-card{ background:var(--white); border:1px solid var(--line); border-radius:18px; padding:22px; margin-bottom:24px; }
+  .summary-card h4{ font-family:var(--serif); font-size:15px; font-weight:600; margin-bottom:14px; }
+
+  .sticky-bottom{
+    position:fixed; left:0; right:0; bottom:0; background:rgba(250,246,238,0.95); backdrop-filter:blur(14px);
+    border-top:1px solid var(--line); padding:16px 28px; z-index:3;
+  }
+  .sticky-bottom .inner{ max-width:640px; margin:0 auto; }
+
+  /* confirmation */
+  .confirm-wrap{ max-width:520px; margin:60px auto 0; text-align:center; padding:0 24px; }
+  .confirm-check{
+    width:76px; height:76px; border-radius:50%; background:var(--good); margin:0 auto 26px; display:flex;
+    align-items:center; justify-content:center;
+  }
+  .confirm-check svg{ width:34px; height:34px; }
+  .confirm-wrap h2{ font-family:var(--serif); font-size:30px; font-weight:700; margin-bottom:10px; }
+  .confirm-wrap .sub{ color:rgba(22,40,61,0.6); font-size:15px; margin-bottom:32px; }
+  .confirm-pickup{
+    background:var(--navy); color:var(--cream); border-radius:18px; padding:24px; margin-bottom:24px;
+  }
+  .confirm-pickup .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(250,246,238,0.6); margin-bottom:6px; }
+  .confirm-pickup .time{ font-family:var(--serif); font-size:26px; font-weight:700; }
+
+  @media (max-width:640px){
+    .panel{ width:100%; }
+    .step-body{ padding:32px 20px 120px; }
+  }
+
+  /* ============================================================ */
+  /* PAGE: MENU */
+  /* ============================================================ */
+  #pageMenu header{
+    position:sticky; top:0; z-index:60; background:rgba(250,246,238,0.9); backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  #pageMenu nav{ display:flex; align-items:center; justify-content:space-between; padding:18px 28px; max-width:1080px; margin:0 auto; }
+  #pageMenu .logo{ display:flex; flex-direction:column; line-height:1; }
+  #pageMenu .logo .word{ font-family:var(--serif); font-weight:800; font-size:22px; color:var(--navy); }
+  #pageMenu .logo .sub{ font-size:9px; letter-spacing:0.32em; color:var(--mid-blue); margin-top:2px; font-weight:500; }
+  #pageMenu .wrap{max-width:1080px; margin:0 auto; padding:0 28px;}
+  @media (max-width:640px){ #pageMenu .wrap{padding:0 18px;} }
+
+  .menu-hero{ padding:80px 0 46px; text-align:center; }
+  .menu-hero .eyebrow{
+    font-family:var(--serif); font-style:italic; font-size:13.5px; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--mid-blue); display:block; margin-bottom:14px;
+  }
+  .menu-hero h1{ font-family:var(--serif); font-weight:700; font-size:clamp(38px,6vw,58px); letter-spacing:-0.01em; margin-bottom:16px; }
+  .menu-hero p{ color:rgba(22,40,61,0.6); font-size:16px; max-width:460px; margin:0 auto 30px; line-height:1.6; }
+  .menu-hero-actions{ display:flex; align-items:center; justify-content:center; gap:28px; flex-wrap:wrap; }
+  .browse-link{ font-size:14px; font-weight:500; color:var(--mid-blue); border-bottom:1px solid var(--harbor-blue); padding-bottom:2px; }
+  .browse-link:hover{ border-color:var(--mid-blue); }
+
+  .menu-section{ padding:70px 0; }
+  .menu-section-head{ text-align:center; max-width:520px; margin:0 auto 44px; }
+  .menu-section-head span.eyebrow{
+    font-family:var(--serif); font-style:italic; font-size:13px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--mid-blue); display:block; margin-bottom:10px;
+  }
+  .menu-section-head h2{ font-family:var(--serif); font-weight:700; font-size:clamp(26px,3.6vw,36px); }
+  .menu-section-head p{ color:rgba(22,40,61,0.55); font-size:14.5px; margin-top:10px; }
+
+  /* featured cards */
+  .featured-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+  @media (max-width:900px){ .featured-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:520px){ .featured-grid{ grid-template-columns:1fr; } }
+  .featured-card{
+    background:var(--white); border:1px solid var(--line); border-radius:22px; padding:24px; display:flex; flex-direction:column;
+    transition:transform .35s cubic-bezier(.4,0,.2,1), box-shadow .35s ease;
+  }
+  .featured-card:hover{ transform:translateY(-6px); box-shadow:0 22px 44px rgba(22,40,61,0.08); }
+  .featured-photo{
+    aspect-ratio:1/1; border-radius:14px; margin-bottom:16px; display:flex; align-items:center; justify-content:center;
+  }
+  .featured-photo svg{ width:52%; height:52%; }
+  .featured-card h3{ font-family:var(--serif); font-size:17px; font-weight:600; margin-bottom:5px; }
+  .featured-card .desc{ font-size:12.5px; color:rgba(22,40,61,0.55); line-height:1.55; margin-bottom:10px; flex-grow:1; }
+  .featured-card .sizes{ font-size:11px; color:rgba(22,40,61,0.4); margin-bottom:12px; }
+  .featured-card .price-row{ display:flex; align-items:center; justify-content:space-between; }
+  .featured-card .price{ font-size:15px; font-weight:700; }
+  .btn-add-sm{
+    background:var(--navy); color:var(--cream); border:none; padding:9px 18px; border-radius:100px; font-size:12.5px;
+    font-weight:600; transition:background .2s ease, transform .15s ease;
+  }
+  .btn-add-sm:hover{ background:var(--mid-blue); }
+  .btn-add-sm.added{ background:var(--good); transform:scale(1.06); }
+
+  /* subtle CTA bands */
+  .subtle-cta{ text-align:center; padding:52px 0; }
+  .subtle-cta .line1{ font-family:var(--serif); font-style:italic; font-size:17px; color:rgba(22,40,61,0.55); margin-bottom:10px; }
+  .subtle-cta a.cta-link{ font-size:16px; font-weight:600; color:var(--navy); border-bottom:1px solid var(--navy); padding-bottom:2px; }
+  .subtle-cta a.cta-link:hover{ color:var(--mid-blue); border-color:var(--mid-blue); }
+  .subtle-cta .btn-primary-sm{
+    display:inline-block; background:var(--navy); color:var(--cream); padding:14px 30px; border-radius:100px;
+    font-size:14px; font-weight:600; transition:background .2s ease, transform .2s ease;
+  }
+  .subtle-cta .btn-primary-sm:hover{ background:var(--mid-blue); transform:translateY(-2px); }
+
+  /* category sub-nav */
+  .cat-subnav{
+    position:sticky; top:74px; z-index:40; background:rgba(250,246,238,0.95); backdrop-filter:blur(10px);
+    display:flex; gap:10px; overflow-x:auto; padding:14px 0; margin-bottom:8px; border-bottom:1px solid var(--line);
+  }
+  .cat-subnav a{
+    flex:0 0 auto; font-size:13px; font-weight:600; color:rgba(22,40,61,0.55); background:var(--white);
+    border:1px solid var(--line); padding:9px 18px; border-radius:100px; transition:all .2s ease;
+  }
+  .cat-subnav a:hover, .cat-subnav a.active{ color:var(--cream); background:var(--navy); border-color:var(--navy); }
+
+  /* menu item rows */
+  .menu-cat{ padding:52px 0; scroll-margin-top:130px; }
+  .menu-cat-title{ font-family:var(--serif); font-size:24px; font-weight:700; margin-bottom:6px; }
+  .menu-cat-sub{ font-size:13.5px; color:rgba(22,40,61,0.5); margin-bottom:28px; }
+  .menu-item-row{
+    display:flex; align-items:center; gap:18px; padding:20px 0; border-bottom:1px solid rgba(22,40,61,0.08);
+  }
+  .menu-item-row:last-child{ border-bottom:none; }
+  .item-icon{
+    width:48px; height:48px; border-radius:50%; background:var(--harbor-blue-soft); flex-shrink:0; display:flex;
+    align-items:center; justify-content:center;
+  }
+  .item-icon svg{ width:46%; }
+  .item-main{ flex:1; min-width:0; }
+  .item-main .item-name{ font-size:15.5px; font-weight:600; margin-bottom:2px; }
+  .item-main .item-desc{ font-size:13px; color:rgba(22,40,61,0.55); line-height:1.5; }
+  .item-meta{ display:flex; align-items:center; gap:6px; margin-top:6px; }
+  .item-meta .cust-icon{ opacity:0.45; }
+  .item-meta .cust-icon svg{ width:14px; height:14px; }
+  .item-side{ display:flex; align-items:center; gap:16px; flex-shrink:0; }
+  .item-sizes{ font-size:11.5px; color:rgba(22,40,61,0.4); white-space:nowrap; display:none; }
+  @media (min-width:640px){ .item-sizes{ display:block; } }
+  .item-price{ font-size:14.5px; font-weight:700; white-space:nowrap; }
+
+  /* sticky mini cart */
+  .mini-cart-fab{
+    position:fixed; right:24px; bottom:24px; z-index:70; background:var(--navy); color:var(--cream);
+    border:none; border-radius:100px; padding:14px 22px; font-size:14px; font-weight:600; display:flex;
+    align-items:center; gap:10px; box-shadow:0 12px 30px rgba(22,40,61,0.25); transition:transform .25s ease;
+  }
+  .mini-cart-fab:hover{ transform:translateY(-2px); }
+  .mini-cart-fab .count{
+    background:var(--cream); color:var(--navy); font-size:11.5px; font-weight:700; min-width:20px; height:20px;
+    border-radius:50%; display:flex; align-items:center; justify-content:center; padding:0 5px;
+  }
+  .mini-cart-pop{
+    position:fixed; right:24px; bottom:88px; z-index:70; width:320px; max-width:85vw; background:var(--white);
+    border-radius:20px; box-shadow:0 20px 50px rgba(22,40,61,0.18); padding:20px; opacity:0; pointer-events:none;
+    transform:translateY(12px); transition:all .3s cubic-bezier(.4,0,.2,1);
+  }
+  .mini-cart-pop.show{ opacity:1; pointer-events:auto; transform:translateY(0); }
+  .mini-cart-pop h4{ font-family:var(--serif); font-size:16px; font-weight:600; margin-bottom:14px; }
+  .mini-cart-pop .mini-item{ display:flex; justify-content:space-between; font-size:13px; padding:7px 0; border-bottom:1px solid rgba(22,40,61,0.06); }
+  .mini-cart-pop .mini-empty{ font-size:13px; color:rgba(22,40,61,0.45); text-align:center; padding:16px 0; }
+  .mini-cart-pop .mini-total{ display:flex; justify-content:space-between; font-weight:700; font-size:14px; padding-top:10px; margin-top:6px; border-top:1px solid var(--line); }
+
+  @media (max-width:640px){
+    .menu-hero{ padding:56px 0 32px; }
+    .menu-section{ padding:48px 0; }
+    .mini-cart-fab{ right:16px; bottom:16px; }
+    .mini-cart-pop{ right:16px; bottom:80px; }
+  }
+
+</style>
+</head>
+<body>
+
+<div id="pageHome">
+
+
+<header id="header">
+  <nav>
+    <a href="#top" class="logo">
+      <span class="word">harbor coffee</span>
+      <span class="sub">COMPANY</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#about" onclick="closeMenu()">About</a>
+      <a onclick="closeMenu(); goToMenu(); return false;">Menu</a>
+      <a href="#contact" onclick="closeMenu()">Contact</a>
+      <a class="nav-cta" onclick="closeMenu(); goToOrder(); return false;">Join the List</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-inner reveal visible">
+      <span class="eyebrow">Cedar Falls, Iowa</span>
+      <h1>Your morning coffee,<br><em>delivered to your door.</em></h1>
+      <p>We bring handcrafted coffee, matcha, and fresh sourdough to the Cedar Valley. Pickup, delivery, or a subscription that fits your week, however you like it.</p>
+      <div class="btn-row">
+        <a class="btn-primary" onclick="goToOrder(); return false;">Join the List</a>
+        <a class="btn-ghost" onclick="goToMenu(); return false;">See What We Make</a>
+      </div>
+      <div class="hero-mark">
+        <span>Locally owned</span>
+        <span>Freshly made</span>
+        <span>Delivered weekly</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="about-copy reveal">
+          <span class="eyebrow">What We Believe</span>
+          <p>Good coffee doesn't need to be complicated. We use real ingredients, make everything properly, and bring it right to you.</p>
+        </div>
+        <div class="about-visual reveal">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 45 C20 30, 32 20, 50 20 C68 20, 80 30, 80 45" stroke="#16283D" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M28 45 L28 68 C28 74 33 78 40 78 L60 78 C67 78 72 74 72 68 L72 45" stroke="#16283D" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M72 52 C82 52 86 62 78 66 C74 68 72 66 72 62" stroke="#16283D" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="18" y1="45" x2="82" y2="45" stroke="#16283D" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M38 8 C38 8 34 13 38 17 C42 13 38 8 38 8" stroke="#16283D" stroke-width="2" stroke-linecap="round"/>
+            <path d="M50 4 C50 4 46 10 50 15 C54 10 50 4 50 4" stroke="#16283D" stroke-width="2" stroke-linecap="round"/>
+            <path d="M62 8 C62 8 58 13 62 17 C66 13 62 8 62 8" stroke="#16283D" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU REVEAL -->
+  <section class="menu-reveal" id="menu">
+    <div class="wrap">
+      <div class="section-head reveal reveal-pop">
+        <span class="eyebrow">Explore the Menu</span>
+        <h2>See what's brewing</h2>
+      </div>
+      <div class="reveal-grid stagger">
+        <div class="reveal-tile reveal reveal-pop" onclick="goToMenu()">
+          <div class="reveal-photo">
+            <svg viewBox="0 0 40 40" fill="none"><path d="M8 14h20v11a7 7 0 01-7 7h-6a7 7 0 01-7-7V14z" stroke="#3E6E93" stroke-width="2"/><path d="M28 17h2a4 4 0 010 8h-2" stroke="#3E6E93" stroke-width="2"/><path d="M13 9c0-1.5 1.5-1.5 1.5-3S13 3 13 3" stroke="#3E6E93" stroke-width="1.6" stroke-linecap="round"/><path d="M20 9c0-1.5 1.5-1.5 1.5-3S20 3 20 3" stroke="#3E6E93" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Coffee</h3>
+        </div>
+        <div class="reveal-tile reveal reveal-pop" onclick="goToMenu()">
+          <div class="reveal-photo">
+            <svg viewBox="0 0 40 40" fill="none"><path d="M10 18a10 10 0 0120 0v3a10 10 0 01-20 0v-3z" stroke="#3E6E93" stroke-width="2"/><path d="M20 8v3" stroke="#3E6E93" stroke-width="2" stroke-linecap="round"/><path d="M14 30l-1.5 5M26 30l1.5 5" stroke="#3E6E93" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Matcha</h3>
+        </div>
+        <div class="reveal-tile reveal reveal-pop" onclick="goToMenu()">
+          <div class="reveal-photo">
+            <svg viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="21" rx="14" ry="10" stroke="#3E6E93" stroke-width="2"/><path d="M9 18c3-2 6-2 11 0s8 2 11 0" stroke="#3E6E93" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Sourdough</h3>
+        </div>
+      </div>
+      <div class="reveal-cta reveal">
+        <a class="btn-primary" onclick="goToOrder(); return false;">Start Your Order</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULFILLMENT OPTIONS -->
+  <section class="fulfillment">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow" style="color:#C9DBEA;">However You Like It</span>
+        <h2>Subscription. Delivery. Pickup.</h2>
+      </div>
+      <div class="fulfill-grid stagger">
+        <div class="fulfill-card reveal">
+          <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4v16h16" stroke="#FAF6EE" stroke-width="1.6" stroke-linecap="round"/><path d="M8 15l4-5 3 3 4-6" stroke="#FAF6EE" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h4>Subscription</h4>
+          <p class="teaser">Set it once, sip all week.</p>
+          <button class="learn-toggle" onclick="toggleFulfill(this)">Learn more <span class="chev">＋</span></button>
+          <div class="fulfill-detail">Pick your drinks and a rhythm that works for you: weekly, every two weeks, or monthly. Change it anytime your schedule shifts.</div>
+        </div>
+        <div class="fulfill-card reveal">
+          <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none"><path d="M3 12h18M3 6h18M3 18h18" stroke="#FAF6EE" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <h4>Delivery</h4>
+          <p class="teaser">Right to your door.</p>
+          <button class="learn-toggle" onclick="toggleFulfill(this)">Learn more <span class="chev">＋</span></button>
+          <div class="fulfill-detail">We deliver to homes and businesses across the Cedar Valley. Order ahead and we'll bring it to you fresh.</div>
+        </div>
+        <div class="fulfill-card reveal">
+          <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="#FAF6EE" stroke-width="1.6"/><path d="M12 8v4l3 2" stroke="#FAF6EE" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <h4>Pickup</h4>
+          <p class="teaser">Grab it on your schedule.</p>
+          <button class="learn-toggle" onclick="toggleFulfill(this)">Learn more <span class="chev">＋</span></button>
+          <div class="fulfill-detail">Order ahead and pick a window that fits your morning. No waiting in line.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta" id="contact">
+    <div class="wrap reveal">
+      <span class="eyebrow">Be First to Know</span>
+      <h2>Cedar Valley's best canned coffee delivered to you.</h2>
+      <div class="btn-row">
+        <a class="btn-primary" onclick="goToOrder(); return false;">Join the List</a>
+        <a class="btn-ghost" onclick="goToOrder(); return false;">See What We Got</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">harbor coffee</div>
+        <p>Freshly made coffee, matcha, and sourdough, delivered around Cedar Valley on your schedule.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <p>kaylindeford@gmail.com</p>
+        <p>(319) 830-1334</p>
+      </div>
+      <div class="footer-col">
+        <h5>Hours</h5>
+        <p>7:00 AM – 7:00 PM</p>
+        <p>Mobile service, Cedar Falls, IA</p>
+      </div>
+      <div class="footer-col">
+        <h5>Explore</h5>
+        <a href="#about">About</a>
+        <a onclick="goToMenu(); return false;">Menu</a>
+        <a onclick="goToOrder(); return false;">Join the List</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Harbor Coffee. All rights reserved.</span>
+      <div>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</div>
+
+<div id="pageOrder" style="display:none;">
+
+
+<header>
+  <nav>
+    <a class="logo" onclick="goToHome(); return false;">
+      <span class="word">harbor coffee</span>
+      <span class="sub">COMPANY</span>
+    </a>
+    <div style="display:flex; align-items:center; gap:18px;">
+      <a class="back-link" onclick="goToHome(); return false;">← Back to site</a>
+      <button class="cart-btn" id="cartBtn" onclick="openCart()">
+        Cart <span class="badge" id="cartBadge">0</span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<section class="order-hero">
+  <div class="wrap">
+    <span class="eyebrow">Order Ahead</span>
+    <h1>Pick your drink, we'll<br>have it ready.</h1>
+    <p>Browse the menu, customize it your way, and pick a pickup time. It only takes a minute.</p>
+    <div class="mode-toggle" id="modeToggle">
+      <button class="mode-btn active" id="modeOneTime" onclick="setOrderMode('onetime')">One-Time Order</button>
+      <button class="mode-btn" id="modeSub" onclick="setOrderMode('subscription')">Subscribe &amp; Save</button>
+    </div>
+    <div class="mode-note" id="modeNote"></div>
+  </div>
+</section>
+
+<section class="wrap bundle-section">
+  <div class="bundle-head">
+    <span class="eyebrow">Grab & Go</span>
+    <h2>Canned Coffee Bundles</h2>
+    <p>Stock up on ready-to-drink canned coffee. The bigger the case, the more you save.</p>
+  </div>
+  <div class="bundle-tabs">
+    <div class="mode-toggle" id="bundleTabs">
+      <button class="mode-btn active" id="bundleTab16" onclick="setBundleSize('16oz')">16 oz Canned</button>
+      <button class="mode-btn" id="bundleTab12" onclick="setBundleSize('12oz')">12 oz Canned</button>
+    </div>
+  </div>
+  <div class="bundle-grid" id="bundleGrid"></div>
+  <div class="square-note">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="rgba(22,40,61,0.4)" stroke-width="2"/></svg>
+    Secure checkout powered by Square. You'll pay directly on squareup.com.
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="drink-grid" id="drinkGrid"></div>
+</section>
+
+</div>
+
+<div id="pageMenu" style="display:none;">
+  <header>
+    <nav>
+      <a class="logo" onclick="goToHome(); return false;">
+        <span class="word">harbor coffee</span>
+        <span class="sub">COMPANY</span>
+      </a>
+      <div style="display:flex; align-items:center; gap:18px;">
+        <a class="back-link" onclick="goToHome(); return false;">← Back to site</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="menu-hero">
+    <div class="wrap reveal visible">
+      <span class="eyebrow">Harbor Coffee</span>
+      <h1>Our Menu</h1>
+      <p>Handcrafted coffee and matcha, made with quality ingredients. Take your time, and order whenever you're ready.</p>
+      <div class="menu-hero-actions">
+        <a class="btn-primary" onclick="goToOrder(); return false;">Order Now</a>
+        <a href="#featured" class="browse-link">Browse Menu</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="menu-section wrap" id="featured">
+    <div class="menu-section-head reveal">
+      <span class="eyebrow">Featured Favorites</span>
+      <h2>What people order most</h2>
+    </div>
+    <div class="featured-grid stagger" id="featuredGrid"></div>
+  </section>
+
+  <section class="subtle-cta wrap reveal">
+    <div class="line1">Found something you love?</div>
+    <a class="cta-link" onclick="goToOrder(); return false;">Start Your Order →</a>
+  </section>
+
+  <section class="wrap" style="padding-top:6px;">
+    <div class="cat-subnav" id="catSubnav"></div>
+  </section>
+
+  <section class="wrap" id="menuCategories"></section>
+
+  <section class="subtle-cta wrap reveal">
+    <div class="line1">Ready when you are.</div>
+    <a class="cta-link" onclick="goToOrder(); return false;">Build Your Drink</a>
+  </section>
+
+  <section class="menu-cat wrap" id="cat-pastries">
+    <div class="menu-cat-title">Pastries</div>
+    <div class="menu-cat-sub">Baked fresh alongside your order.</div>
+    <div id="pastriesList"></div>
+  </section>
+
+  <section class="subtle-cta wrap reveal" style="padding:80px 0 100px;">
+    <div class="line1">Freshly crafted, ready when you are.</div>
+    <a class="btn-primary-sm" onclick="goToOrder(); return false;">Place Your Order</a>
+  </section>
+
+  <button class="mini-cart-fab" id="menuCartFab" onclick="toggleMenuCart()">
+    Cart <span class="count" id="menuCartCount">0</span>
+  </button>
+  <div class="mini-cart-pop" id="menuCartPop"></div>
+</div>
+
+<!-- ============ CUSTOMIZE PANEL ============ -->
+<div class="scrim" id="scrim" onclick="closeAllOverlays()"></div>
+
+<div class="panel" id="customizePanel">
+  <div class="panel-head">
+    <h2 id="custTitle">Customize</h2>
+    <button class="close-btn" onclick="closeCustomize()">✕</button>
+  </div>
+  <div class="panel-body" id="custBody"></div>
+  <div class="panel-foot">
+    <div class="panel-total">
+      <span class="label">Item total</span>
+      <span class="amt" id="custTotal">$0.00</span>
+    </div>
+    <button class="btn-full" id="custAddBtn" onclick="confirmCustomize()">Add to Cart</button>
+  </div>
+</div>
+
+<!-- ============ CART DRAWER ============ -->
+<div class="panel" id="cartPanel">
+  <div class="panel-head">
+    <h2>Your Order</h2>
+    <button class="close-btn" onclick="closeCart()">✕</button>
+  </div>
+  <div class="panel-body" id="cartBody"></div>
+  <div class="panel-foot" id="cartFoot"></div>
+</div>
+
+<!-- ============ SCHEDULE SCREEN ============ -->
+<div class="step-screen" id="scheduleScreen">
+  <div class="step-head">
+    <button class="back" onclick="backToCart()">←</button>
+    <h2 id="scheduleTitle">Choose Pickup Time</h2>
+  </div>
+  <div class="step-body">
+    <div id="freqArea"></div>
+    <div class="date-scroll" id="dateScroll"></div>
+    <div id="slotArea"></div>
+  </div>
+  <div class="sticky-bottom">
+    <div class="inner">
+      <button class="btn-full" id="scheduleContinue" onclick="goToCheckout()" disabled>Continue to Checkout</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CHECKOUT SCREEN ============ -->
+<div class="step-screen" id="checkoutScreen">
+  <div class="step-head">
+    <button class="back" onclick="backToSchedule()">←</button>
+    <h2>Checkout</h2>
+  </div>
+  <div class="step-body">
+    <div class="field"><label>First Name</label><input type="text" id="ckName" placeholder="Kaylin"></div>
+    <div class="field"><label>Phone Number</label><input type="tel" id="ckPhone" placeholder="(319) 555-0192"></div>
+    <div class="field"><label>Email</label><input type="email" id="ckEmail" placeholder="you@email.com"></div>
+
+    <div class="square-checkout-note">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="#3E6E93" stroke-width="2"/><path d="M8 12l3 3 5-6" stroke="#3E6E93" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>You'll enter your card, Apple Pay, or Google Pay on Square's secure checkout page next.</span>
+    </div>
+    <div id="checkoutError" class="checkout-error"></div>
+
+    <div class="sub-notice" id="checkoutSubNotice">
+      <strong>Subscription Canned Coffee Notice</strong>
+      Your canned subscription drinks are prepared without ice to prevent them from becoming watered down while stored. Simply pour over ice when you're ready to enjoy for the freshest flavor.
+    </div>
+
+    <div class="summary-card">
+      <h4>Order Summary</h4>
+      <div id="checkoutSummaryItems"></div>
+      <div class="totals" id="checkoutTotals"></div>
+    </div>
+  </div>
+  <div class="sticky-bottom">
+    <div class="inner">
+      <button class="btn-full" id="placeOrderBtn" onclick="submitToSquare()">Place Order</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CONFIRMATION SCREEN ============ -->
+<div class="step-screen" id="confirmScreen">
+  <div class="step-head" style="border-bottom:none;">
+    <div style="width:38px;"></div>
+    <h2 style="margin:0 auto;" id="confirmHeadTitle">Order Confirmed</h2>
+  </div>
+  <div class="confirm-wrap">
+    <div class="confirm-check">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6.5" stroke="#FAF6EE" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <h2>Thanks, <span id="confirmName">friend</span>.</h2>
+    <p class="sub" id="confirmSub">We're getting your order ready.</p>
+    <div class="confirm-pickup">
+      <div class="label" id="confirmTimeLabel">Pickup Time</div>
+      <div class="time" id="confirmTime">—</div>
+    </div>
+    <div class="summary-card" style="text-align:left;">
+      <h4>Receipt</h4>
+      <div id="confirmItems"></div>
+      <div class="totals" id="confirmTotals"></div>
+    </div>
+    <button class="btn-full" style="margin-bottom:14px;" onclick="orderAnother()">Order Another Drink</button>
+  </div>
+</div>
+
+<script>
+
+/* ===================== PAGE ROUTER ===================== */
+function goToOrder(){
+  document.getElementById('pageHome').style.display = 'none';
+  document.getElementById('pageMenu').style.display = 'none';
+  document.getElementById('pageOrder').style.display = '';
+  window.scrollTo(0,0);
+}
+function goToHome(){
+  document.getElementById('pageOrder').style.display = 'none';
+  document.getElementById('pageMenu').style.display = 'none';
+  document.getElementById('pageHome').style.display = '';
+  window.scrollTo(0,0);
+}
+function goToMenu(){
+  document.getElementById('pageHome').style.display = 'none';
+  document.getElementById('pageOrder').style.display = 'none';
+  document.getElementById('pageMenu').style.display = '';
+  window.scrollTo(0,0);
+  renderMenuPage();
+}
+function goToSquare(url){
+  window.location.href = url;
+}
+
+
+/* ===================== HOME PAGE SCRIPT ===================== */
+
+  // sticky nav shrink
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive:true });
+
+  // mobile menu
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+  function closeMenu(){
+    menuToggle.classList.remove('open');
+    navLinks.classList.remove('open');
+  }
+
+  // fulfillment card accordion
+  function toggleFulfill(btn){
+    const detail = btn.nextElementSibling;
+    const isOpen = detail.classList.toggle('open');
+    btn.classList.toggle('open', isOpen);
+    btn.firstChild.textContent = isOpen ? 'Show less ' : 'Learn more ';
+  }
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal:not(.visible)');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+  revealEls.forEach(el => io.observe(el));
+
+
+/* ===================== ORDER PAGE SCRIPT ===================== */
+
+/* ===================== DATA ===================== */
+const DRINKS = [
+  { id:'cookie-butter-latte', name:'Cookie Butter Latte', desc:'Espresso, steamed milk, and cookie butter syrup.', matcha:false, defaultSyrup:{name:'Cookie Butter', pumps:2} },
+  { id:'vanilla-latte', name:'Vanilla Latte', desc:'Our classic: espresso, steamed milk, and vanilla.', matcha:false, defaultSyrup:{name:'Vanilla', pumps:2} },
+  { id:'salted-caramel-latte', name:'Salted Caramel Latte', desc:'Espresso, steamed milk, salted caramel syrup.', matcha:false, defaultSyrup:{name:'Salted Caramel', pumps:2} },
+  { id:'brown-sugar-latte', name:'Brown Sugar Cinnamon Latte', desc:'Espresso, steamed milk, brown sugar cinnamon.', matcha:false, defaultSyrup:{name:'Brown Sugar Cinnamon', pumps:2} },
+  { id:'smores-latte', name:"S'mores Latte", desc:'Espresso, steamed milk, chocolate, toasted marshmallow notes.', matcha:false, defaultSyrup:{name:'White Chocolate', pumps:2} },
+  { id:'vanilla-matcha', name:'Vanilla Matcha', desc:'Stone-ground matcha, steamed milk, vanilla.', matcha:true, defaultSyrup:{name:'Vanilla', pumps:2} },
+  { id:'cookie-butter-matcha', name:'Cookie Butter Matcha', desc:'Stone-ground matcha, steamed milk, cookie butter.', matcha:true, defaultSyrup:{name:'Cookie Butter', pumps:2} },
+  { id:'strawberry-matcha', name:'Strawberry Matcha', desc:'Stone-ground matcha, steamed milk, strawberry.', matcha:true, defaultSyrup:{name:'Strawberry', pumps:2} },
+  { id:'honey-lavender-latte', name:'Honey Lavender Latte', desc:'Espresso, steamed milk, honey, a touch of lavender.', matcha:false, seasonal:true, defaultSyrup:{name:'Honey', pumps:2} },
+  { id:'peach-matcha', name:'Peach Matcha', desc:'Stone-ground matcha, steamed milk, sweet peach.', matcha:true, seasonal:true, defaultSyrup:{name:'Peach', pumps:2} },
+];
+
+const SIZES = [
+  { id:'16-canned', label:'16 oz Canned', price:7.00, canned:true },
+  { id:'12-canned', label:'12 oz Canned', price:6.50, canned:true },
+  { id:'16-cup', label:'16 oz Cup with Lid', price:6.00, canned:false },
+];
+const STARTING_PRICE = Math.min(...SIZES.map(s => s.price));
+
+/* ---- Canned bundle pricing (Buy Now → Square Checkout) ----
+   Replace each `square` URL below with your real Square Checkout Link
+   (Square Dashboard → Items → [item] → Share → Checkout Link) once
+   you've set these up as items in Square. Until then these are placeholders. */
+const BUNDLES = {
+  '16oz': {
+    label: '16 oz Canned',
+    tiers: [
+      { id:'ind',    label:'Individual', qty:1,  price:7.00,  perCan:7.00, savings:0,  square:'https://squareup.com/checkout/REPLACE-16OZ-INDIVIDUAL' },
+      { id:'4pack',  label:'4-Pack',     qty:4,  price:26.00, perCan:6.50, savings:7,  square:'https://squareup.com/checkout/REPLACE-16OZ-4PACK' },
+      { id:'8pack',  label:'8-Pack',     qty:8,  price:50.00, perCan:6.25, savings:11, square:'https://squareup.com/checkout/REPLACE-16OZ-8PACK' },
+      { id:'12pack', label:'12-Pack',    qty:12, price:72.00, perCan:6.00, savings:14, square:'https://squareup.com/checkout/REPLACE-16OZ-12PACK' },
+    ]
+  },
+  '12oz': {
+    label: '12 oz Canned',
+    tiers: [
+      { id:'ind',    label:'Individual', qty:1,  price:6.50, perCan:6.50, savings:0,  square:'https://squareup.com/checkout/REPLACE-12OZ-INDIVIDUAL' },
+      { id:'4pack',  label:'4-Pack',     qty:4,  price:24.00, perCan:6.00, savings:8,  square:'https://squareup.com/checkout/REPLACE-12OZ-4PACK' },
+      { id:'8pack',  label:'8-Pack',     qty:8,  price:46.00, perCan:5.75, savings:12, square:'https://squareup.com/checkout/REPLACE-12OZ-8PACK' },
+      { id:'12pack', label:'12-Pack',    qty:12, price:66.00, perCan:5.50, savings:15, square:'https://squareup.com/checkout/REPLACE-12OZ-12PACK' },
+    ]
+  }
+};
+let bundleSize = '16oz';
+
+function setBundleSize(size){
+  bundleSize = size;
+  document.getElementById('bundleTab16').classList.toggle('active', size==='16oz');
+  document.getElementById('bundleTab12').classList.toggle('active', size==='12oz');
+  renderBundles();
+}
+
+function renderBundles(){
+  const data = BUNDLES[bundleSize];
+  const bestSavings = Math.max(...data.tiers.map(t => t.savings));
+  document.getElementById('bundleGrid').innerHTML = data.tiers.map(t => `
+    <div class="bundle-card ${t.savings===bestSavings && t.savings>0 ? 'best' : ''}">
+      ${t.savings===bestSavings && t.savings>0 ? '<span class="best-tag">Best Value</span>' : ''}
+      <div class="pack-label">${t.label}</div>
+      <div class="pack-qty">${t.qty} can${t.qty>1?'s':''} of ${data.label}</div>
+      <div class="pack-price">$${t.price.toFixed(2)}</div>
+      <div class="per-can">$${t.perCan.toFixed(2)} / can</div>
+      ${t.savings>0 ? `<span class="savings-badge">Save ~${t.savings}%</span>` : '<div style="height:34px;"></div>'}
+      <button class="btn-buy" onclick="goToSquare('${t.square}')">Buy Now</button>
+    </div>
+  `).join('');
+}
+const MILKS = [ { id:'whole', label:'Whole Milk', delta:0 }, { id:'oat', label:'Oat Milk', delta:0.75 } ];
+const ESPRESSO = [ { id:'regular', label:'Regular', delta:0 }, { id:'extra', label:'Extra Shot', delta:1.00 } ];
+const SWEETNESS = [ { id:'less', label:'Less Sweet' }, { id:'regular', label:'Regular Sweet' }, { id:'extra', label:'Extra Sweet' } ];
+const SYRUPS = ['Vanilla','Cookie Butter','Salted Caramel','Brown Sugar Cinnamon','White Chocolate','Hazelnut','Honey','Peach'];
+const TOPPINGS = [ { id:'coldfoam', label:'Cold Foam', delta:0.75 }, { id:'whip', label:'Whipped Cream', delta:0.75 }, { id:'caramel', label:'Caramel Drizzle', delta:0.50 }, { id:'chocolate', label:'Chocolate Drizzle', delta:0.50 }, { id:'cinnamon', label:'Cinnamon', delta:0 } ];
+
+/* ---- Pastries (simple items, no drink customization) ----
+   Placeholder pricing. Adjust to match your actual bakery pricing. */
+const PASTRIES = [
+  { id:'sourdough-loaf', name:'Sourdough Loaf', desc:'Naturally leavened, baked fresh same-day.', sizes:'Whole Loaf', price:8.00 },
+  { id:'sourdough-cookie', name:'Sourdough Chocolate Chip Cookie', desc:'A soft, tangy twist on a classic.', sizes:'Single', price:3.50 },
+  { id:'cinnamon-sourdough-twist', name:'Cinnamon Sugar Sourdough Twist', desc:'Buttery, cinnamon-sugar dusted pastry.', sizes:'Single', price:4.00 },
+];
+
+const CATEGORIES = [
+  { id:'espresso', label:'Espresso Drinks', drinkIds:['cookie-butter-latte','vanilla-latte','salted-caramel-latte','brown-sugar-latte','smores-latte'] },
+  { id:'matcha', label:'Matcha', drinkIds:['vanilla-matcha','cookie-butter-matcha','strawberry-matcha'] },
+  { id:'seasonal', label:'Seasonal Specials', drinkIds:['honey-lavender-latte','peach-matcha'] },
+  { id:'pastries', label:'Pastries', pastries:true },
+];
+const FEATURED_IDS = ['cookie-butter-latte','vanilla-matcha','smores-latte','salted-caramel-latte'];
+const ICE_LEVELS = [ { id:'light', label:'Light Ice' }, { id:'regular', label:'Regular Ice' }, { id:'extra', label:'Extra Ice' }, { id:'none', label:'No Ice' } ];
+
+const drinkQty = {};
+DRINKS.forEach(d => drinkQty[d.id] = 1);
+
+let cart = [];
+let editIndex = null; // index in cart being edited, or null for new add
+let cust = null; // current customize state
+let orderMode = 'onetime'; // 'onetime' | 'subscription'
+let subFrequency = 'weekly';
+const FREQUENCIES = [
+  { id:'weekly', label:'Weekly' },
+  { id:'biweekly', label:'Every 2 Weeks' },
+  { id:'monthly', label:'Monthly' },
+];
+
+function setOrderMode(mode){
+  orderMode = mode;
+  document.getElementById('modeOneTime').classList.toggle('active', mode==='onetime');
+  document.getElementById('modeSub').classList.toggle('active', mode==='subscription');
+  document.getElementById('modeNote').textContent = mode==='subscription'
+    ? 'Every drink you add now will be part of your subscription.'
+    : '';
+}
+
+let scheduleDate = null;
+let scheduleTime = null;
+
+const TAX_RATE = 0.07;
+
+/* ===================== ICONS ===================== */
+function cupIcon(matcha){
+  const stroke = matcha ? '#4F8A6A' : '#3E6E93';
+  return `<svg viewBox="0 0 40 40" fill="none"><path d="M8 14h20v11a7 7 0 01-7 7h-6a7 7 0 01-7-7V14z" stroke="${stroke}" stroke-width="2"/><path d="M28 17h2a4 4 0 010 8h-2" stroke="${stroke}" stroke-width="2"/><path d="M13 9c0-1.5 1.5-1.5 1.5-3S13 3 13 3" stroke="${stroke}" stroke-width="1.6" stroke-linecap="round"/><path d="M20 9c0-1.5 1.5-1.5 1.5-3S20 3 20 3" stroke="${stroke}" stroke-width="1.6" stroke-linecap="round"/></svg>`;
+}
+function pastryIcon(){
+  return `<svg viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="21" rx="14" ry="10" stroke="#3E6E93" stroke-width="2"/><path d="M9 18c3-2 6-2 11 0s8 2 11 0" stroke="#3E6E93" stroke-width="1.6" stroke-linecap="round"/></svg>`;
+}
+
+/* ===================== RENDER: BROWSE GRID ===================== */
+function renderGrid(){
+  const grid = document.getElementById('drinkGrid');
+  grid.innerHTML = DRINKS.map(d => `
+    <div class="drink-card">
+      <div class="drink-photo" style="background:${d.matcha ? '#E9F1EA' : 'var(--harbor-blue-soft)'};">${cupIcon(d.matcha)}</div>
+      <h3>${d.name}</h3>
+      <div class="desc">${d.desc}</div>
+      <div class="price-row">
+        <div class="price">$${STARTING_PRICE.toFixed(2)} <span>starting</span></div>
+        <div class="qty-stepper">
+          <button onclick="changeQty('${d.id}',-1)">–</button>
+          <span id="qty-${d.id}">${drinkQty[d.id]}</span>
+          <button onclick="changeQty('${d.id}',1)">+</button>
+        </div>
+      </div>
+      <button class="btn-customize" onclick="openCustomize('${d.id}')">Customize</button>
+    </div>
+  `).join('');
+}
+function changeQty(id, dir){
+  drinkQty[id] = Math.max(1, drinkQty[id] + dir);
+  document.getElementById('qty-'+id).textContent = drinkQty[id];
+}
+
+/* ===================== CUSTOMIZE PANEL ===================== */
+function defaultCustomState(drink){
+  const syrups = {};
+  SYRUPS.forEach(s => syrups[s] = 0);
+  if (drink.defaultSyrup && syrups.hasOwnProperty(drink.defaultSyrup.name)) {
+    syrups[drink.defaultSyrup.name] = drink.defaultSyrup.pumps;
+  }
+  return {
+    drinkId: drink.id, qty: drinkQty[drink.id] || 1,
+    size:'16-canned', milk:'whole', espresso:'regular', sweetness:'regular',
+    syrups, toppings:{}, iceLevel:'regular', subscription:(orderMode==='subscription'), notes:''
+  };
+}
+
+function openCustomize(drinkId, existingIndex){
+  const drink = DRINKS.find(d => d.id === drinkId);
+  editIndex = (existingIndex !== undefined) ? existingIndex : null;
+  cust = (editIndex !== null) ? JSON.parse(JSON.stringify(cart[editIndex].config)) : defaultCustomState(drink);
+  document.getElementById('custTitle').textContent = drink.name;
+  document.getElementById('custAddBtn').textContent = editIndex !== null ? 'Save Changes' : 'Add to Cart';
+  renderCustomizeBody(drink);
+  updateCustomTotal(drink);
+  document.getElementById('scrim').classList.add('show');
+  document.getElementById('customizePanel').classList.add('show');
+}
+function closeCustomize(){
+  document.getElementById('customizePanel').classList.remove('show');
+  if (!document.getElementById('cartPanel').classList.contains('show')) {
+    document.getElementById('scrim').classList.remove('show');
+  }
+}
+
+function renderCustomizeBody(drink){
+  const body = document.getElementById('custBody');
+  body.innerHTML = `
+    <div class="opt-group">
+      <h4>Size</h4>
+      <div class="opt-pills">${SIZES.map(s => `<button class="pill ${cust.size===s.id?'active':''}" onclick="setCust('size','${s.id}','${drink.id}')">${s.label}</button>`).join('')}</div>
+    </div>
+
+    <div class="opt-group">
+      <h4>Temperature</h4>
+      <div class="opt-pills">
+        <button class="pill active">Iced</button>
+        <button class="pill disabled">Hot (coming soon)</button>
+      </div>
+    </div>
+
+    <div class="opt-group">
+      <h4>Milk</h4>
+      <div class="opt-pills">${MILKS.map(m => `<button class="pill ${cust.milk===m.id?'active':''}" onclick="setCust('milk','${m.id}','${drink.id}')">${m.label}</button>`).join('')}</div>
+    </div>
+
+    <div class="opt-group">
+      <h4>Espresso</h4>
+      <div class="opt-pills">${ESPRESSO.map(e => `<button class="pill ${cust.espresso===e.id?'active':''}" onclick="setCust('espresso','${e.id}','${drink.id}')">${e.label}</button>`).join('')}</div>
+    </div>
+
+    <div class="opt-group">
+      <h4>Sweetness</h4>
+      <div class="opt-pills">${SWEETNESS.map(s => `<button class="pill ${cust.sweetness===s.id?'active':''}" onclick="setCust('sweetness','${s.id}','${drink.id}')">${s.label}</button>`).join('')}</div>
+    </div>
+
+    <div class="opt-group">
+      <h4>Syrups</h4>
+      ${SYRUPS.map(s => `
+        <div class="opt-row">
+          <span class="name">${s}</span>
+          <div class="mini-stepper">
+            <button onclick="bumpSyrup('${s}',-1,'${drink.id}')">–</button>
+            <span id="syrup-${s.replace(/\s+/g,'')}">${cust.syrups[s]}</span>
+            <button onclick="bumpSyrup('${s}',1,'${drink.id}')">+</button>
+          </div>
+        </div>`).join('')}
+    </div>
+
+    <div class="opt-group">
+      <h4>Toppings</h4>
+      ${TOPPINGS.map(t => `
+        <div class="check-row">
+          <input type="checkbox" id="top-${t.id}" ${cust.toppings[t.id] ? 'checked' : ''} onchange="toggleTopping('${t.id}','${drink.id}')">
+          <label for="top-${t.id}">${t.label}${t.delta ? ` (+$${t.delta.toFixed(2)})` : ''}</label>
+        </div>`).join('')}
+    </div>
+
+    <div class="opt-group">
+      <h4>Ice Level</h4>
+      <div class="opt-pills">${ICE_LEVELS.map(i => `<button class="pill ${cust.iceLevel===i.id?'active':''}" onclick="setCust('iceLevel','${i.id}','${drink.id}')">${i.label}</button>`).join('')}</div>
+    </div>
+
+    <div class="sub-notice" id="custSubNotice">
+      <strong>Subscription Canned Coffee Notice</strong>
+      Your canned subscription drinks are prepared without ice to prevent them from becoming watered down while stored. Simply pour over ice when you're ready to enjoy for the freshest flavor.
+    </div>
+    <div class="check-row" style="margin-bottom:8px;">
+      <input type="checkbox" id="subCheck" ${cust.subscription ? 'checked' : ''} ${orderMode==='subscription' ? 'disabled' : ''} onchange="toggleSubscription('${drink.id}')">
+      <label for="subCheck">${orderMode==='subscription' ? 'Included in your subscription' : 'This is part of my coffee subscription'}</label>
+    </div>
+
+    <div class="opt-group">
+      <h4>Special Instructions (Optional)</h4>
+      <textarea placeholder="Anything you'd like us to know?" oninput="cust.notes=this.value">${cust.notes}</textarea>
+    </div>
+  `;
+  updateSubNotice();
+}
+
+function setCust(key, val, drinkId){
+  cust[key] = val;
+  const drink = DRINKS.find(d => d.id === drinkId);
+  renderCustomizeBody(drink);
+  updateCustomTotal(drink);
+}
+function bumpSyrup(name, dir, drinkId){
+  cust.syrups[name] = Math.max(0, Math.min(6, cust.syrups[name] + dir));
+  document.getElementById('syrup-'+name.replace(/\s+/g,'')).textContent = cust.syrups[name];
+  updateCustomTotal(DRINKS.find(d => d.id === drinkId));
+}
+function toggleTopping(id, drinkId){
+  cust.toppings[id] = document.getElementById('top-'+id).checked;
+  updateCustomTotal(DRINKS.find(d => d.id === drinkId));
+}
+function toggleSubscription(drinkId){
+  cust.subscription = document.getElementById('subCheck').checked;
+  updateSubNotice();
+}
+function updateSubNotice(){
+  const isCanned = SIZES.find(s => s.id === cust.size).canned;
+  document.getElementById('custSubNotice').classList.toggle('show', cust.subscription && isCanned);
+}
+
+function computeItemPrice(drink, config){
+  let price = SIZES.find(s => s.id === config.size).price;
+  price += MILKS.find(m => m.id === config.milk).delta;
+  price += ESPRESSO.find(e => e.id === config.espresso).delta;
+  const totalPumps = Object.values(config.syrups).reduce((a,b) => a+b, 0);
+  if (totalPumps > 2) price += (totalPumps - 2) * 0.50;
+  TOPPINGS.forEach(t => { if (config.toppings[t.id]) price += t.delta; });
+  return price;
+}
+function updateCustomTotal(drink){
+  const unit = computeItemPrice(drink, cust);
+  document.getElementById('custTotal').textContent = '$' + (unit * cust.qty).toFixed(2);
+}
+
+function describeConfig(drink, config){
+  const parts = [];
+  parts.push(SIZES.find(s => s.id === config.size).label);
+  parts.push(MILKS.find(m => m.id === config.milk).label);
+  if (config.espresso === 'extra') parts.push('Extra Shot');
+  const sw = SWEETNESS.find(s => s.id === config.sweetness).label;
+  parts.push(sw);
+  const syrupList = Object.entries(config.syrups).filter(([,p]) => p > 0).map(([n,p]) => `${p} pump${p>1?'s':''} ${n}`);
+  if (syrupList.length) parts.push(syrupList.join(', '));
+  const topList = TOPPINGS.filter(t => config.toppings[t.id]).map(t => t.label);
+  if (topList.length) parts.push(topList.join(', '));
+  parts.push(ICE_LEVELS.find(i => i.id === config.iceLevel).label);
+  return parts.join(' • ');
+}
+
+function confirmCustomize(){
+  const drink = DRINKS.find(d => d.id === cust.drinkId);
+  const unit = computeItemPrice(drink, cust);
+  const item = { drinkId: drink.id, name: drink.name, matcha: drink.matcha, qty: cust.qty, unit, config: JSON.parse(JSON.stringify(cust)) };
+  if (editIndex !== null) { cart[editIndex] = item; } else { cart.push(item); }
+  editIndex = null;
+  updateCartBadge();
+  closeCustomize();
+  openCart();
+}
+
+/* ===================== CART ===================== */
+function updateCartBadge(){
+  const count = cart.reduce((a,i) => a + i.qty, 0);
+  document.getElementById('cartBadge').textContent = count;
+}
+
+function cartTotals(){
+  const subtotal = cart.reduce((sum,i) => sum + i.unit * i.qty, 0);
+  const tax = subtotal * TAX_RATE;
+  return { subtotal, tax, total: subtotal + tax };
+}
+
+function hasSubscriptionCanned(){
+  return cart.some(i => !i.simple && i.config.subscription && SIZES.find(s => s.id === i.config.size).canned);
+}
+function hasSubscriptionItems(){
+  return cart.some(i => !i.simple && i.config.subscription);
+}
+
+function openCart(){
+  renderCart();
+  document.getElementById('scrim').classList.add('show');
+  document.getElementById('cartPanel').classList.add('show');
+}
+function closeCart(){
+  document.getElementById('cartPanel').classList.remove('show');
+  document.getElementById('scrim').classList.remove('show');
+}
+function closeAllOverlays(){
+  closeCustomize();
+  closeCart();
+}
+
+function renderCart(){
+  const body = document.getElementById('cartBody');
+  const foot = document.getElementById('cartFoot');
+  if (cart.length === 0){
+    body.innerHTML = `<div class="empty-state">Your cart is empty.<br>Add a drink to get started.</div>`;
+    foot.innerHTML = '';
+    return;
+  }
+  body.innerHTML = (hasSubscriptionCanned() ? `
+    <div class="sub-notice show">
+      <strong>Subscription Canned Coffee Notice</strong>
+      Your canned subscription drinks are prepared without ice to prevent them from becoming watered down while stored. Simply pour over ice when you're ready to enjoy for the freshest flavor.
+    </div>` : '') +
+    cart.map((item, idx) => item.simple ? `
+    <div class="cart-item">
+      <div class="thumb">${pastryIcon()}</div>
+      <div class="info">
+        <div class="name">${item.qty} × ${item.name}</div>
+        <div class="meta">${item.sizes || ''}</div>
+        <div class="actions">
+          <button class="remove" onclick="removeFromCart(${idx})">Remove</button>
+        </div>
+      </div>
+      <div class="price">$${(item.unit*item.qty).toFixed(2)}</div>
+    </div>
+  ` : `
+    <div class="cart-item">
+      <div class="thumb">${cupIcon(item.matcha)}</div>
+      <div class="info">
+        <div class="name">${item.qty} × ${item.name}</div>
+        <div class="meta">${describeConfig(DRINKS.find(d=>d.id===item.drinkId), item.config)}</div>
+        ${item.config.subscription ? '<div class="sub-tag">Subscription</div>' : ''}
+        <div class="actions">
+          <button onclick="openCustomize('${item.drinkId}', ${idx})">Edit</button>
+          <button class="remove" onclick="removeFromCart(${idx})">Remove</button>
+        </div>
+      </div>
+      <div class="price">$${(item.unit*item.qty).toFixed(2)}</div>
+    </div>
+  `).join('');
+
+  const t = cartTotals();
+  foot.innerHTML = `
+    <div class="totals">
+      <div class="row"><span>Subtotal</span><span>$${t.subtotal.toFixed(2)}</span></div>
+      <div class="row"><span>Tax</span><span>$${t.tax.toFixed(2)}</span></div>
+      <div class="row grand"><span>Total</span><span>$${t.total.toFixed(2)}</span></div>
+    </div>
+    <button class="btn-full" style="margin-top:18px;" onclick="openSchedule()">${hasSubscriptionItems() ? 'Set Up Subscription' : 'Schedule Pickup'}</button>
+  `;
+}
+function removeFromCart(idx){
+  cart.splice(idx,1);
+  updateCartBadge();
+  renderCart();
+}
+
+/* ===================== SCHEDULE ===================== */
+const DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+function hoursFor(dow){
+  if (dow === 0) return null; // closed
+  if (dow === 6) return { open: 8*60, close: 12*60 };
+  return { open: 7*60, close: 14*60 };
+}
+
+function nextDays(n){
+  const days = [];
+  const today = new Date();
+  for (let i=0; i<n; i++){
+    const d = new Date(today);
+    d.setDate(today.getDate() + i);
+    days.push(d);
+  }
+  return days;
+}
+
+function fmtDateKey(d){ return d.toISOString().slice(0,10); }
+
+function renderFreqArea(){
+  const area = document.getElementById('freqArea');
+  if (!hasSubscriptionItems()){ area.innerHTML = ''; return; }
+  area.innerHTML = `
+    <div class="opt-group">
+      <h4>Delivery Frequency</h4>
+      <div class="opt-pills">${FREQUENCIES.map(f => `<button class="pill ${subFrequency===f.id?'active':''}" onclick="setFrequency('${f.id}')">${f.label}</button>`).join('')}</div>
+    </div>`;
+}
+function setFrequency(id){ subFrequency = id; renderFreqArea(); }
+
+function openSchedule(){
+  closeAllOverlays();
+  document.getElementById('scheduleTitle').textContent = hasSubscriptionItems() ? 'Choose Start Date & Frequency' : 'Choose Pickup Time';
+  renderFreqArea();
+  renderDateScroll();
+  if (!scheduleDate) selectDate(fmtDateKey(nextDays(14).find(d => hoursFor(d.getDay()))));
+  else renderSlots();
+  document.getElementById('scheduleScreen').classList.add('show');
+}
+function backToCart(){
+  document.getElementById('scheduleScreen').classList.remove('show');
+  openCart();
+}
+
+function renderDateScroll(){
+  const scroll = document.getElementById('dateScroll');
+  const days = nextDays(14);
+  scroll.innerHTML = days.map(d => {
+    const key = fmtDateKey(d);
+    const closed = !hoursFor(d.getDay());
+    return `<button class="date-chip ${scheduleDate===key?'active':''} ${closed?'disabled':''}" onclick="selectDate('${key}')">
+      <div class="dow">${DOW[d.getDay()]}</div>
+      <div class="num">${d.getDate()}</div>
+    </button>`;
+  }).join('');
+}
+
+function selectDate(key){
+  scheduleDate = key;
+  scheduleTime = null;
+  renderDateScroll();
+  renderSlots();
+  document.getElementById('scheduleContinue').disabled = true;
+}
+
+function generateSlots(dateKey){
+  const [y,m,d] = dateKey.split('-').map(Number);
+  const dateObj = new Date(y, m-1, d);
+  const dow = dateObj.getDay();
+  const hours = hoursFor(dow);
+  if (!hours) return [];
+  const slots = [];
+  const now = new Date();
+  const isToday = fmtDateKey(now) === dateKey;
+  for (let mins = hours.open; mins <= hours.close; mins += 30){
+    const h24 = Math.floor(mins/60), m = mins%60;
+    const ampm = h24 >= 12 ? 'PM' : 'AM';
+    const h12 = ((h24 + 11) % 12) + 1;
+    const label = `${h12}:${m.toString().padStart(2,'0')} ${ampm}`;
+    let disabled = false;
+    if (isToday){
+      const slotMins = h24*60 + m;
+      const nowMins = now.getHours()*60 + now.getMinutes() + 15; // 15 min prep buffer
+      if (slotMins < nowMins) disabled = true;
+    }
+    slots.push({ time: `${h24}:${m.toString().padStart(2,'0')}`, label, disabled });
+  }
+  return slots;
+}
+
+function renderSlots(){
+  const area = document.getElementById('slotArea');
+  const slots = generateSlots(scheduleDate);
+  if (slots.length === 0){
+    area.innerHTML = `<div class="closed-note">Harbor Coffee is closed this day. Pick another date above.</div>`;
+    return;
+  }
+  area.innerHTML = `<div class="slot-note">Available in 30-minute windows.</div>
+    <div class="slot-grid">${slots.map(s => `<button class="slot ${scheduleTime===s.time?'active':''} ${s.disabled?'disabled':''}" ${s.disabled?'':`onclick="selectTime('${s.time}','${s.label}')"`}>${s.label}</button>`).join('')}</div>`;
+}
+function selectTime(time,label){
+  scheduleTime = time;
+  window.scheduleTimeLabel = label;
+  renderSlots();
+  document.getElementById('scheduleContinue').disabled = false;
+}
+
+/* ===================== CHECKOUT ===================== */
+function goToCheckout(){
+  document.getElementById('scheduleScreen').classList.remove('show');
+  renderCheckoutSummary();
+  document.getElementById('checkoutSubNotice').classList.toggle('show', hasSubscriptionCanned());
+  document.getElementById('placeOrderBtn').textContent = hasSubscriptionItems() ? 'Start Subscription' : 'Place Order';
+  document.getElementById('checkoutError').classList.remove('show');
+  document.getElementById('checkoutScreen').classList.add('show');
+}
+function backToSchedule(){
+  document.getElementById('checkoutScreen').classList.remove('show');
+  document.getElementById('scheduleScreen').classList.add('show');
+}
+
+function renderCheckoutSummary(){
+  const itemsEl = document.getElementById('checkoutSummaryItems');
+  itemsEl.innerHTML = cart.map(i => `<div class="opt-row"><span class="name">${i.qty} × ${i.name}</span><span>$${(i.unit*i.qty).toFixed(2)}</span></div>`).join('');
+  const t = cartTotals();
+  document.getElementById('checkoutTotals').innerHTML = `
+    <div class="row"><span>Subtotal</span><span>$${t.subtotal.toFixed(2)}</span></div>
+    <div class="row"><span>Tax</span><span>$${t.tax.toFixed(2)}</span></div>
+    <div class="row grand"><span>Total</span><span>$${t.total.toFixed(2)}</span></div>
+  `;
+}
+
+/* Sends the order to our secure backend, which creates a real Square
+   checkout page and hands us back its URL. The browser is then sent
+   there to pay — nothing about payment happens on this site itself. */
+async function submitToSquare(){
+  const btn = document.getElementById('placeOrderBtn');
+  const errorEl = document.getElementById('checkoutError');
+  errorEl.classList.remove('show');
+  errorEl.textContent = '';
+
+  const name = document.getElementById('ckName').value.trim();
+  const phone = document.getElementById('ckPhone').value.trim();
+  const email = document.getElementById('ckEmail').value.trim();
+
+  if (!name || !phone || !email){
+    errorEl.textContent = 'Please fill in your name, phone, and email before continuing.';
+    errorEl.classList.add('show');
+    return;
+  }
+
+  const isSub = hasSubscriptionItems();
+  const items = cart.map(i => ({
+    name: i.simple ? i.name : `${i.name} (${describeConfig(DRINKS.find(d=>d.id===i.drinkId), i.config)})`,
+    quantity: i.qty,
+    unitPriceCents: Math.round(i.unit * 100)
+  }));
+
+  const payload = {
+    items: items,
+    customer: { name: name, phone: phone, email: email },
+    fulfillment: {
+      type: isSub ? 'subscription' : 'pickup',
+      date: scheduleDate,
+      time: window.scheduleTimeLabel || '',
+      frequency: isSub ? subFrequency : null
+    }
+  };
+
+  btn.classList.add('loading');
+  btn.textContent = 'Connecting to Square…';
+
+  try {
+    const res = await fetch('/api/create-checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+    if (!res.ok || !data.url){
+      throw new Error((data && data.error) || 'Could not start checkout');
+    }
+    window.location.href = data.url;
+  } catch (err){
+    btn.classList.remove('loading');
+    btn.textContent = isSub ? 'Start Subscription' : 'Place Order';
+    errorEl.textContent = "We couldn't connect to Square checkout just now. Please try again in a moment.";
+    errorEl.classList.add('show');
+  }
+}
+function formatSelectedDate(){
+  if (!scheduleDate) return '';
+  const [y,m,d] = scheduleDate.split('-').map(Number);
+  const dateObj = new Date(y, m-1, d);
+  return dateObj.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric' });
+}
+function orderAnother(){
+  cart = [];
+  scheduleDate = null; scheduleTime = null;
+  updateCartBadge();
+  document.getElementById('confirmScreen').classList.remove('show');
+}
+
+/* ===================== MENU PAGE ===================== */
+function custIcons(){
+  // small decorative milk / sweetness indicator icons
+  return `<span class="cust-icon" title="Milk options"><svg viewBox="0 0 24 24" fill="none"><path d="M9 3h6l1 4-1 2v9a3 3 0 01-3 3h0a3 3 0 01-3-3V9L8 7l1-4z" stroke="#16283D" stroke-width="1.6"/></svg></span>
+    <span class="cust-icon" title="Sweetness options"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="#16283D" stroke-width="1.6"/><path d="M9 12h6M12 9v6" stroke="#16283D" stroke-width="1.6" stroke-linecap="round"/></svg></span>`;
+}
+
+function quickAddDrink(drinkId, btn){
+  const drink = DRINKS.find(d => d.id === drinkId);
+  const config = defaultCustomState(drink);
+  const unit = computeItemPrice(drink, config);
+  cart.push({ drinkId: drink.id, name: drink.name, matcha: drink.matcha, qty: 1, unit, config });
+  updateCartBadge();
+  pulseAdd(btn);
+}
+function quickAddPastry(pastryId, btn){
+  const p = PASTRIES.find(x => x.id === pastryId);
+  cart.push({ simple:true, name:p.name, sizes:p.sizes, qty:1, unit:p.price });
+  updateCartBadge();
+  pulseAdd(btn);
+}
+function pulseAdd(btn){
+  if (!btn) return;
+  const original = btn.textContent;
+  btn.textContent = 'Added ✓';
+  btn.classList.add('added');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('added'); }, 1100);
+  renderMenuCartPop();
+  document.getElementById('menuCartCount').textContent = cart.reduce((a,i) => a + i.qty, 0);
+}
+
+function renderFeatured(){
+  document.getElementById('featuredGrid').innerHTML = FEATURED_IDS.map(id => {
+    const d = DRINKS.find(x => x.id === id);
+    return `
+    <div class="featured-card reveal visible">
+      <div class="featured-photo" style="background:${d.matcha ? '#E9F1EA' : 'var(--harbor-blue-soft)'};">${cupIcon(d.matcha)}</div>
+      <h3>${d.name}</h3>
+      <div class="desc">${d.desc}</div>
+      <div class="sizes">16oz Canned · 12oz Canned · 16oz Cup</div>
+      <div class="price-row">
+        <div class="price">From $${STARTING_PRICE.toFixed(2)}</div>
+        <button class="btn-add-sm" onclick="quickAddDrink('${d.id}', this)">Add to Order</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderCatSubnav(){
+  document.getElementById('catSubnav').innerHTML = CATEGORIES.map(c =>
+    `<a href="#cat-${c.id}">${c.label}</a>`
+  ).join('');
+}
+
+function renderMenuCategories(){
+  const wrap = document.getElementById('menuCategories');
+  wrap.innerHTML = CATEGORIES.filter(c => !c.pastries).map(c => `
+    <div class="menu-cat" id="cat-${c.id}">
+      <div class="menu-cat-title">${c.label}</div>
+      <div class="menu-cat-sub">${c.id === 'seasonal' ? 'Available for a limited time.' : 'Iced, made to order.'}</div>
+      ${c.drinkIds.map(id => {
+        const d = DRINKS.find(x => x.id === id);
+        return `
+        <div class="menu-item-row">
+          <div class="item-icon">${cupIcon(d.matcha)}</div>
+          <div class="item-main">
+            <div class="item-name">${d.name}</div>
+            <div class="item-desc">${d.desc}</div>
+            <div class="item-meta">${custIcons()}</div>
+          </div>
+          <div class="item-side">
+            <div class="item-sizes">16oz Canned · 12oz · Cup</div>
+            <div class="item-price">From $${STARTING_PRICE.toFixed(2)}</div>
+            <button class="btn-add-sm" onclick="quickAddDrink('${d.id}', this)">Add</button>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+  `).join('');
+}
+
+function renderPastries(){
+  document.getElementById('pastriesList').innerHTML = PASTRIES.map(p => `
+    <div class="menu-item-row">
+      <div class="item-icon">${pastryIcon()}</div>
+      <div class="item-main">
+        <div class="item-name">${p.name}</div>
+        <div class="item-desc">${p.desc}</div>
+      </div>
+      <div class="item-side">
+        <div class="item-sizes">${p.sizes}</div>
+        <div class="item-price">$${p.price.toFixed(2)}</div>
+        <button class="btn-add-sm" onclick="quickAddPastry('${p.id}', this)">Add</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderMenuPage(){
+  renderFeatured();
+  renderCatSubnav();
+  renderMenuCategories();
+  renderPastries();
+  document.getElementById('menuCartCount').textContent = cart.reduce((a,i) => a + i.qty, 0);
+  renderMenuCartPop();
+}
+
+function toggleMenuCart(){
+  const pop = document.getElementById('menuCartPop');
+  pop.classList.toggle('show');
+  if (pop.classList.contains('show')) renderMenuCartPop();
+}
+function renderMenuCartPop(){
+  const pop = document.getElementById('menuCartPop');
+  if (cart.length === 0){
+    pop.innerHTML = `<h4>Your Order</h4><div class="mini-empty">Nothing added yet.</div>`;
+    return;
+  }
+  const t = cartTotals();
+  pop.innerHTML = `
+    <h4>Your Order</h4>
+    ${cart.map(i => `<div class="mini-item"><span>${i.qty} × ${i.name}</span><span>$${(i.unit*i.qty).toFixed(2)}</span></div>`).join('')}
+    <div class="mini-total"><span>Total</span><span>$${t.total.toFixed(2)}</span></div>
+    <button class="btn-full" style="margin-top:16px;" onclick="goToOrder()">Continue to Checkout</button>
+  `;
+}
+
+/* ===================== INIT ===================== */
+renderGrid();
+renderBundles();
+
+</script>
+
+</body>
+</html>
