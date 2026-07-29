@@ -92,7 +92,7 @@
     font-weight:500; transition:color .4s ease;
   }
   #pageHome header.scrolled .logo .sub{ color:var(--mid-blue); }
-  .nav-links{ display:flex; align-items:center; gap:40px; }
+  .nav-links{ display:flex; align-items:center; gap:36px; }
   .nav-links a{
     font-size:14px; font-weight:500; color:var(--navy); position:relative; padding:4px 0;
   }
@@ -102,12 +102,13 @@
   }
   .nav-links a:hover::after{ transform:scaleX(1); transform-origin:left; }
   .nav-cta{
-    background:var(--navy); color:var(--cream) !important; padding:11px 24px; border-radius:100px;
-    font-size:13.5px; font-weight:600; letter-spacing:0.02em;
-    transition:transform .25s ease, background .25s ease;
+    background:none; color:var(--navy) !important; padding:4px 0; border-radius:0;
+    font-size:14.5px; font-weight:700; letter-spacing:0.01em; margin-left:8px;
+    box-shadow:none; position:relative;
+    transition:color .25s ease;
   }
-  .nav-cta:hover{ background:var(--mid-blue); transform:translateY(-1px); }
-  .nav-cta::after{ display:none; }
+  .nav-cta:hover{ background:none; color:var(--mid-blue) !important; transform:none; box-shadow:none; }
+  .nav-cta::after{ display:block; }
   .menu-toggle{ display:none; }
   @media (max-width:820px){
     .nav-links{
@@ -316,28 +317,19 @@
   }
 
   /* ---------- HERO ---------- */
-  .order-hero{ padding:56px 0 40px; text-align:center; }
+  .order-hero{ padding:64px 0 48px; text-align:center; }
   .order-hero .eyebrow{
     font-family:var(--serif); font-style:italic; font-size:13.5px; letter-spacing:0.16em; text-transform:uppercase;
-    color:var(--mid-blue); display:block; margin-bottom:14px;
+    color:var(--mid-blue); display:block; margin-bottom:16px;
   }
-  .order-hero h1{ font-family:var(--serif); font-weight:700; font-size:clamp(30px,5vw,46px); letter-spacing:-0.01em; margin-bottom:12px; }
-  .order-hero p{ color:rgba(22,40,61,0.6); font-size:15.5px; max-width:440px; margin:0 auto; }
-  .compare-link{
-    display:block; margin:22px auto 0; background:none; border:none; font-size:13px; font-weight:600;
-    color:var(--mid-blue); text-decoration:underline; text-underline-offset:3px;
-  }
-  .compare-link:hover{ color:var(--navy); }
+  .order-hero h1{ font-family:var(--serif); font-weight:700; font-size:clamp(30px,5vw,46px); letter-spacing:-0.01em; margin-bottom:14px; line-height:1.1; }
+  .order-hero p{ color:rgba(22,40,61,0.55); font-size:15.5px; max-width:400px; margin:0 auto; }
 
-  .compare-table{ width:100%; border-collapse:collapse; margin-top:6px; }
-  .compare-table th{
-    font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:rgba(22,40,61,0.45);
-    font-weight:600; text-align:right; padding:0 0 12px; border-bottom:1px solid var(--line);
+  .hero-toggles{ display:flex; flex-direction:column; align-items:center; gap:30px; margin-top:38px; }
+  .toggle-group{ display:flex; flex-direction:column; align-items:center; gap:11px; }
+  .toggle-label{
+    font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(22,40,61,0.38); font-weight:700;
   }
-  .compare-table th:first-child{ text-align:left; }
-  .compare-table td{ padding:14px 0; border-bottom:1px solid rgba(22,40,61,0.06); text-align:right; font-size:14.5px; }
-  .compare-table td:first-child{ text-align:left; font-weight:600; font-family:var(--serif); font-size:15px; }
-  .compare-note{ font-size:12.5px; color:rgba(22,40,61,0.5); margin-top:18px; line-height:1.6; }
   .mode-toggle{
     display:inline-flex; margin:28px auto 0; background:var(--white); border:1px solid var(--line);
     border-radius:100px; padding:5px; gap:4px;
@@ -355,6 +347,7 @@
 
   /* ---------- BUNDLE & SAVE ---------- */
   .bundle-section{ padding:14px 0 76px; }
+  .drink-size-section{ display:flex; flex-direction:column; align-items:center; gap:11px; padding-bottom:40px; }
   .bundle-head{ text-align:center; margin-bottom:32px; }
   .bundle-head .eyebrow{
     font-family:var(--serif); font-style:italic; font-size:13.5px; letter-spacing:0.16em; text-transform:uppercase;
@@ -362,7 +355,7 @@
   }
   .bundle-head h2{ font-family:var(--serif); font-weight:700; font-size:clamp(24px,3.6vw,34px); margin-bottom:10px; }
   .bundle-head p{ color:rgba(22,40,61,0.55); font-size:14.5px; max-width:440px; margin:0 auto; }
-  .bundle-tabs{ display:flex; justify-content:center; margin:22px 0 34px; }
+  .bundle-tabs{ display:flex; flex-direction:column; align-items:center; gap:11px; margin:22px 0 34px; }
   .bundle-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
   @media (max-width:900px){ .bundle-grid{ grid-template-columns:repeat(2,1fr); } }
   @media (max-width:480px){ .bundle-grid{ grid-template-columns:1fr; } }
@@ -943,14 +936,19 @@
 <section class="order-hero">
   <div class="wrap">
     <span class="eyebrow">Order Ahead</span>
-    <h1>Pick your drink, we'll<br>have it ready.</h1>
-    <p>Browse the menu, customize it your way, and pick a pickup time. It only takes a minute.</p>
-    <div class="mode-toggle" id="modeToggle">
-      <button class="mode-btn active" id="modeOneTime" onclick="setOrderMode('onetime')">One-Time Order</button>
-      <button class="mode-btn" id="modeSub" onclick="setOrderMode('subscription')">Subscribe &amp; Save</button>
+    <h1>Your drink,<br>ready when you are.</h1>
+    <p>Browse, customize, and pick a pickup time.</p>
+
+    <div class="hero-toggles">
+      <div class="toggle-group">
+        <div class="toggle-label">Order Type</div>
+        <div class="mode-toggle" id="modeToggle">
+          <button class="mode-btn active" id="modeOneTime" onclick="setOrderMode('onetime')">One-Time Order</button>
+          <button class="mode-btn" id="modeSub" onclick="setOrderMode('subscription')">Subscribe &amp; Save</button>
+        </div>
+        <div class="mode-note" id="modeNote"></div>
+      </div>
     </div>
-    <div class="mode-note" id="modeNote"></div>
-    <button class="compare-link" onclick="openPriceCompare()">See price comparison: Fresh · 16oz Canned · 12oz Canned</button>
   </div>
 </section>
 
@@ -958,12 +956,28 @@
   <div class="bundle-head">
     <span class="eyebrow">Grab & Go</span>
     <h2>Canned Coffee Bundles</h2>
-    <p>Stock up on ready-to-drink canned coffee — $8.00 flat per can, any flavor. The bigger the case, the more you save.</p>
+    <p>Stock up on ready-to-drink canned coffee. The bigger the case, the more you save.</p>
+  </div>
+  <div class="bundle-tabs">
+    <div class="toggle-label">Choose Can Size</div>
+    <div class="mode-toggle" id="bundleTabsToggle">
+      <button class="mode-btn active" id="bundleTab16" onclick="setBundleSize('16oz')">16oz Canned</button>
+      <button class="mode-btn" id="bundleTab12" onclick="setBundleSize('12oz')">12oz Canned</button>
+    </div>
   </div>
   <div class="bundle-grid" id="bundleGrid"></div>
   <div class="square-note">
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="rgba(22,40,61,0.4)" stroke-width="2"/></svg>
     Secure checkout powered by Square. You'll pay directly on squareup.com.
+  </div>
+</section>
+
+<section class="wrap drink-size-section">
+  <div class="toggle-label">Preferred Size</div>
+  <div class="mode-toggle" id="sizeToggle">
+    <button class="mode-btn active" id="sizeFresh" onclick="setPreferredSize('fresh')">Regular 16oz</button>
+    <button class="mode-btn" id="sizeCanned16" onclick="setPreferredSize('canned16')">16oz Canned</button>
+    <button class="mode-btn" id="sizeCanned12" onclick="setPreferredSize('canned12')">12oz Canned</button>
   </div>
 </section>
 
@@ -1041,14 +1055,6 @@
 
 <!-- ============ CUSTOMIZE PANEL ============ -->
 <div class="scrim" id="scrim" onclick="closeAllOverlays()"></div>
-
-<div class="panel" id="comparePanel">
-  <div class="panel-head">
-    <h2>Compare Prices</h2>
-    <button class="close-btn" onclick="closeAllOverlays()">✕</button>
-  </div>
-  <div class="panel-body" id="compareBody"></div>
-</div>
 
 <div class="panel" id="customizePanel">
   <div class="panel-head">
@@ -1163,6 +1169,7 @@ function goToOrder(){
   window.scrollTo(0,0);
   if (cart.length === 0 && typeof setOrderMode === 'function') {
     setOrderMode('onetime');
+    setPreferredSize('fresh');
   }
 }
 function goToHome(){
@@ -1178,6 +1185,7 @@ function goToMenu(){
   window.scrollTo(0,0);
   if (cart.length === 0 && typeof setOrderMode === 'function') {
     setOrderMode('onetime');
+    setPreferredSize('fresh');
   }
   renderMenuPage();
 }
@@ -1232,29 +1240,23 @@ function goToSquare(url){
 /* ===================== DATA ===================== */
 const DRINKS = [
   // ---- Lattes ----
-  { id:'classic-latte', name:'Classic Latte', desc:'Espresso, whole milk (or oat milk), ice.', matcha:false, tier:'classic', freshPrice:6.75, canned16Price:8.00, canned12Price:6.75 },
-  { id:'vanilla-latte', name:'Vanilla Latte', desc:'Espresso, vanilla syrup, whole milk (or oat milk), ice.', matcha:false, tier:'flavored', freshPrice:7.50, canned16Price:8.00, canned12Price:7.25, defaultSyrup:{name:'Vanilla', pumps:2} },
-  { id:'french-vanilla-latte', name:'French Vanilla Latte', desc:'Espresso, French vanilla syrup, whole milk (or oat milk), ice.', matcha:false, tier:'flavored', freshPrice:7.50, canned16Price:8.00, canned12Price:7.25, defaultSyrup:{name:'French Vanilla', pumps:2} },
-  { id:'hazelnut-latte', name:'Hazelnut Latte', desc:'Espresso, hazelnut syrup, whole milk (or oat milk), ice.', matcha:false, tier:'flavored', freshPrice:7.50, canned16Price:8.00, canned12Price:7.25, defaultSyrup:{name:'Hazelnut', pumps:2} },
-  { id:'salted-caramel-latte', name:'Salted Caramel Latte', desc:'Espresso, salted caramel syrup, whole milk (or oat milk), ice.', matcha:false, tier:'flavored', freshPrice:7.50, canned16Price:8.00, canned12Price:7.25, defaultSyrup:{name:'Salted Caramel', pumps:2} },
-  { id:'teddy-graham-latte', name:'Teddy Graham Latte', desc:'Espresso, brown sugar, cinnamon, honey, whole milk (or oat milk), ice.', matcha:false, tier:'flavored', freshPrice:7.50, canned16Price:8.00, canned12Price:7.25, defaultSyrup:{name:'Teddy Graham', pumps:2} },
-  { id:'cookie-butter-latte', name:'Cookie Butter Latte', desc:'Espresso, cookie butter syrup, whole milk (or oat milk), ice.', matcha:false, tier:'flavored', freshPrice:7.50, canned16Price:8.00, canned12Price:7.25, defaultSyrup:{name:'Cookie Butter', pumps:2} },
-  { id:'smores-latte', name:"S'mores Latte", desc:"Espresso, s'mores syrup, whole milk (or oat milk), ice.", matcha:false, tier:'flavored', freshPrice:7.50, canned16Price:8.00, canned12Price:7.25, defaultSyrup:{name:"S'mores", pumps:2} },
-  { id:'banana-bread-latte', name:'Banana Bread Latte', desc:'Espresso, banana bread syrup, whole milk (or oat milk), ice.', matcha:false, tier:'flavored', freshPrice:7.50, canned16Price:8.00, canned12Price:7.25, defaultSyrup:{name:'Banana Bread', pumps:2} },
+  { id:'teddy-graham-latte', name:'Teddy Graham Latte', desc:'Espresso, brown sugar, cinnamon, honey, whole milk (or oat milk), ice.', matcha:false, tier:'flavored', freshPrice:7.00, canned16Price:8.00, canned12Price:7.50, defaultSyrup:{name:'Teddy Graham', pumps:2} },
+  { id:'cookie-butter-latte', name:'Cookie Butter Latte', desc:'Espresso, cookie butter syrup, whole milk (or oat milk), ice.', matcha:false, tier:'flavored', freshPrice:7.00, canned16Price:8.00, canned12Price:7.50, defaultSyrup:{name:'Cookie Butter', pumps:2} },
+  { id:'banana-bread-latte', name:'Banana Bread Latte', desc:'Espresso, banana bread syrup, whole milk (or oat milk), ice.', matcha:false, tier:'flavored', freshPrice:7.00, canned16Price:8.00, canned12Price:7.50, defaultSyrup:{name:'Banana Bread', pumps:2} },
+  { id:'smores-latte', name:"S'mores Latte", desc:"Espresso, s'mores syrup, whole milk (or oat milk), ice.", matcha:false, tier:'flavored', freshPrice:7.00, canned16Price:8.00, canned12Price:7.50, defaultSyrup:{name:"S'mores", pumps:2} },
+  { id:'vanilla-latte', name:'Vanilla Latte', desc:'Espresso, vanilla syrup, whole milk (or oat milk), ice.', matcha:false, tier:'flavored', freshPrice:7.00, canned16Price:8.00, canned12Price:7.50, defaultSyrup:{name:'Vanilla', pumps:2} },
+  { id:'hazelnut-latte', name:'Hazelnut Latte', desc:'Espresso, hazelnut syrup, whole milk (or oat milk), ice.', matcha:false, tier:'flavored', freshPrice:7.00, canned16Price:8.00, canned12Price:7.50, defaultSyrup:{name:'Hazelnut', pumps:2} },
+  { id:'salted-caramel-latte', name:'Salted Caramel Latte', desc:'Espresso, salted caramel syrup, whole milk (or oat milk), ice.', matcha:false, tier:'flavored', freshPrice:7.00, canned16Price:8.00, canned12Price:7.50, defaultSyrup:{name:'Salted Caramel', pumps:2} },
+  { id:'french-vanilla-latte', name:'French Vanilla Latte', desc:'Espresso, French vanilla syrup, whole milk (or oat milk), ice.', matcha:false, tier:'flavored', freshPrice:7.00, canned16Price:8.00, canned12Price:7.50, defaultSyrup:{name:'French Vanilla', pumps:2} },
+  { id:'classic-latte', name:'Classic Latte', desc:'Espresso, whole milk (or oat milk), ice.', matcha:false, tier:'classic', freshPrice:7.00, canned16Price:8.00, canned12Price:6.75 },
 
-  // ---- Matcha: Classic tier ----
-  { id:'classic-matcha', name:'Classic Matcha', desc:'Ceremonial matcha, whole milk (or oat milk), ice.', matcha:true, tier:'classic', freshPrice:7.50, canned16Price:8.00, canned12Price:6.75 },
-  { id:'vanilla-matcha', name:'Vanilla Matcha', desc:'Ceremonial matcha, vanilla syrup, whole milk (or oat milk), ice.', matcha:true, tier:'classic', freshPrice:7.50, canned16Price:8.00, canned12Price:6.75, defaultSyrup:{name:'Vanilla', pumps:2} },
-  { id:'french-vanilla-matcha', name:'French Vanilla Matcha', desc:'Ceremonial matcha, French vanilla syrup, whole milk (or oat milk), ice.', matcha:true, tier:'classic', freshPrice:7.50, canned16Price:8.00, canned12Price:6.75, defaultSyrup:{name:'French Vanilla', pumps:2} },
-  { id:'hazelnut-matcha', name:'Hazelnut Matcha', desc:'Ceremonial matcha, hazelnut syrup, whole milk (or oat milk), ice.', matcha:true, tier:'classic', freshPrice:7.50, canned16Price:8.00, canned12Price:6.75, defaultSyrup:{name:'Hazelnut', pumps:2} },
-  { id:'salted-caramel-matcha', name:'Salted Caramel Matcha', desc:'Ceremonial matcha, salted caramel syrup, whole milk (or oat milk), ice.', matcha:true, tier:'classic', freshPrice:7.50, canned16Price:8.00, canned12Price:6.75, defaultSyrup:{name:'Salted Caramel', pumps:2} },
-
-  // ---- Matcha: Specialty tier ----
-  { id:'teddy-graham-matcha', name:'Teddy Graham Matcha', desc:'Ceremonial matcha, brown sugar, cinnamon, honey, whole milk (or oat milk), ice.', matcha:true, tier:'specialty', freshPrice:8.00, canned16Price:8.00, canned12Price:7.25, defaultSyrup:{name:'Teddy Graham', pumps:2} },
-  { id:'cookie-butter-matcha', name:'Cookie Butter Matcha', desc:'Ceremonial matcha, cookie butter syrup, whole milk (or oat milk), ice.', matcha:true, tier:'specialty', freshPrice:8.00, canned16Price:8.00, canned12Price:7.25, defaultSyrup:{name:'Cookie Butter', pumps:2} },
-  { id:'smores-matcha', name:"S'mores Matcha", desc:"Ceremonial matcha, s'mores syrup, whole milk (or oat milk), ice.", matcha:true, tier:'specialty', freshPrice:8.00, canned16Price:8.00, canned12Price:7.25, defaultSyrup:{name:"S'mores", pumps:2} },
-  { id:'banana-bread-matcha', name:'Banana Bread Matcha', desc:'Ceremonial matcha, banana bread syrup, whole milk (or oat milk), ice.', matcha:true, tier:'specialty', freshPrice:8.00, canned16Price:8.00, canned12Price:7.25, defaultSyrup:{name:'Banana Bread', pumps:2} },
-  { id:'strawberry-matcha', name:'Strawberry Matcha', desc:'Ceremonial matcha, strawberry syrup, whole milk (or oat milk), ice.', matcha:true, tier:'specialty', freshPrice:8.00, canned16Price:8.00, canned12Price:7.25, defaultSyrup:{name:'Strawberry', pumps:2} },
+  // ---- Matcha ----
+  { id:'banana-bread-matcha', name:'Banana Bread Matcha', desc:'Ceremonial matcha, banana bread syrup, whole milk (or oat milk), ice.', matcha:true, tier:'specialty', freshPrice:7.00, canned16Price:8.00, canned12Price:7.25, defaultSyrup:{name:'Banana Bread', pumps:2} },
+  { id:'strawberry-matcha', name:'Strawberry Matcha', desc:'Ceremonial matcha, strawberry syrup, whole milk (or oat milk), ice.', matcha:true, tier:'specialty', freshPrice:7.00, canned16Price:8.00, canned12Price:7.25, defaultSyrup:{name:'Strawberry', pumps:2} },
+  { id:'cookie-butter-matcha', name:'Cookie Butter Matcha', desc:'Ceremonial matcha, cookie butter syrup, whole milk (or oat milk), ice.', matcha:true, tier:'specialty', freshPrice:7.00, canned16Price:8.00, canned12Price:7.25, defaultSyrup:{name:'Cookie Butter', pumps:2} },
+  { id:'smores-matcha', name:"S'mores Matcha", desc:"Ceremonial matcha, s'mores syrup, whole milk (or oat milk), ice.", matcha:true, tier:'specialty', freshPrice:7.00, canned16Price:8.00, canned12Price:7.25, defaultSyrup:{name:"S'mores", pumps:2} },
+  { id:'vanilla-matcha', name:'Vanilla Matcha', desc:'Ceremonial matcha, vanilla syrup, whole milk (or oat milk), ice.', matcha:true, tier:'classic', freshPrice:7.00, canned16Price:8.00, canned12Price:6.75, defaultSyrup:{name:'Vanilla', pumps:2} },
+  { id:'classic-matcha', name:'Classic Matcha', desc:'Ceremonial matcha, whole milk (or oat milk), ice.', matcha:true, tier:'classic', freshPrice:7.00, canned16Price:8.00, canned12Price:6.75 },
 ];
 
 /* Format = fresh iced (made to order, with ice) or canned (ready-to-drink,
@@ -1282,8 +1284,8 @@ const PASTRIES = [
 ];
 
 const CATEGORIES = [
-  { id:'lattes', label:'Lattes', drinkIds:['classic-latte','vanilla-latte','french-vanilla-latte','hazelnut-latte','salted-caramel-latte','teddy-graham-latte','cookie-butter-latte','smores-latte','banana-bread-latte'] },
-  { id:'matcha', label:'Matcha', drinkIds:['classic-matcha','vanilla-matcha','french-vanilla-matcha','hazelnut-matcha','salted-caramel-matcha','teddy-graham-matcha','cookie-butter-matcha','smores-matcha','banana-bread-matcha','strawberry-matcha'] },
+  { id:'lattes', label:'Lattes', drinkIds:['teddy-graham-latte','cookie-butter-latte','banana-bread-latte','smores-latte','vanilla-latte','hazelnut-latte','salted-caramel-latte','french-vanilla-latte','classic-latte'] },
+  { id:'matcha', label:'Matcha', drinkIds:['banana-bread-matcha','strawberry-matcha','cookie-butter-matcha','smores-matcha','vanilla-matcha','classic-matcha'] },
   { id:'pastries', label:'Pastries', pastries:true },
 ];
 const FEATURED_IDS = ['cookie-butter-latte','vanilla-matcha','smores-latte','strawberry-matcha'];
@@ -1293,19 +1295,46 @@ const FEATURED_IDS = ['cookie-butter-latte','vanilla-matcha','smores-latte','str
    discounts $0.50 (4-pack), $0.75 (8-pack), or $1.00 (12-pack) off
    the per-can price, matching the original bundle discount pattern. */
 /* All 16oz Canned drinks are a flat $8.00 regardless of flavor, so
-   bundle pricing no longer needs to vary by flavor tier — just one
-   set of pack sizes. */
-const BUNDLE_TIERS = [
-  { id:'ind',    label:'Individual', qty:1,  price:8.00,  perCan:8.00, savings:0 },
-  { id:'4pack',  label:'4-Pack',     qty:4,  price:30.00, perCan:7.50, savings:6 },
-  { id:'8pack',  label:'8-Pack',     qty:8,  price:58.00, perCan:7.25, savings:9 },
-  { id:'12pack', label:'12-Pack',    qty:12, price:84.00, perCan:7.00, savings:13 },
-];
-const BUNDLE_LABEL = '16oz Canned Coffee';
+   bundle pricing now offers two can sizes to choose from, each with
+   its own price and discount schedule. 16oz is a flat $8.00/can
+   across every flavor. 12oz varies by flavor tier (Classic $6.75,
+   flavored lattes $7.50, flavored matchas $7.25) — the 12oz bundle
+   below uses the flavored latte price as its base, since that's the
+   most common pick; exact per-can cost may differ slightly for
+   Classic or matcha flavors. */
+const BUNDLE_SIZES = {
+  '16oz': {
+    label: '16oz Canned Coffee',
+    tiers: [
+      { id:'ind',    label:'Individual', qty:1,  price:8.00,  perCan:8.00, savings:0 },
+      { id:'4pack',  label:'4-Pack',     qty:4,  price:30.00, perCan:7.50, savings:6 },
+      { id:'8pack',  label:'8-Pack',     qty:8,  price:58.00, perCan:7.25, savings:9 },
+      { id:'12pack', label:'12-Pack',    qty:12, price:84.00, perCan:7.00, savings:13 },
+    ]
+  },
+  '12oz': {
+    label: '12oz Canned Coffee',
+    tiers: [
+      { id:'ind',    label:'Individual', qty:1,  price:7.50,  perCan:7.50, savings:0 },
+      { id:'4pack',  label:'4-Pack',     qty:4,  price:28.00, perCan:7.00, savings:7 },
+      { id:'8pack',  label:'8-Pack',     qty:8,  price:54.00, perCan:6.75, savings:10 },
+      { id:'12pack', label:'12-Pack',    qty:12, price:78.00, perCan:6.50, savings:13 },
+    ]
+  }
+};
+let bundleSizeKey = '16oz';
+
+function setBundleSize(size){
+  bundleSizeKey = size;
+  document.getElementById('bundleTab16').classList.toggle('active', size==='16oz');
+  document.getElementById('bundleTab12').classList.toggle('active', size==='12oz');
+  renderBundles();
+}
 
 function renderBundles(){
-  const bestSavings = Math.max(...BUNDLE_TIERS.map(t => t.savings));
-  document.getElementById('bundleGrid').innerHTML = BUNDLE_TIERS.map(t => `
+  const data = BUNDLE_SIZES[bundleSizeKey];
+  const bestSavings = Math.max(...data.tiers.map(t => t.savings));
+  document.getElementById('bundleGrid').innerHTML = data.tiers.map(t => `
     <div class="bundle-card ${t.savings===bestSavings && t.savings>0 ? 'best' : ''}">
       ${t.savings===bestSavings && t.savings>0 ? '<span class="best-tag">Best Value</span>' : ''}
       <div class="pack-label">${t.label}</div>
@@ -1313,7 +1342,7 @@ function renderBundles(){
       <div class="pack-price">$${t.price.toFixed(2)}</div>
       <div class="per-can">$${t.perCan.toFixed(2)} / can</div>
       ${t.savings>0 ? `<span class="savings-badge">Save ~${t.savings}%</span>` : '<div style="height:34px;"></div>'}
-      <button class="btn-buy" id="buy-${t.id}" onclick="buyBundle('${t.id}', this)">Buy Now</button>
+      <button class="btn-buy" id="buy-${bundleSizeKey}-${t.id}" onclick="buyBundle('${t.id}', this)">Buy Now</button>
     </div>
   `).join('');
 }
@@ -1322,8 +1351,9 @@ function renderBundles(){
    creates a real, correctly-priced Square checkout page on the fly.
    No manual Square Checkout Links needed for any bundle. */
 async function buyBundle(tierId, btn){
-  const tier = BUNDLE_TIERS.find(t => t.id === tierId);
-  const label = `${BUNDLE_LABEL} — ${tier.label} (${tier.qty} cans)`;
+  const data = BUNDLE_SIZES[bundleSizeKey];
+  const tier = data.tiers.find(t => t.id === tierId);
+  const label = `${data.label} — ${tier.label} (${tier.qty} cans)`;
   const original = btn.textContent;
   btn.textContent = 'Connecting…';
   btn.disabled = true;
@@ -1338,11 +1368,11 @@ async function buyBundle(tierId, btn){
         fulfillment: { type: 'pickup' }
       })
     });
-    const data = await res.json();
-    if (!res.ok || !data.url) {
-      throw new Error((data && (data.details || data.error)) || 'Could not start checkout');
+    const data2 = await res.json();
+    if (!res.ok || !data2.url) {
+      throw new Error((data2 && (data2.details || data2.error)) || 'Could not start checkout');
     }
-    window.location.href = data.url;
+    window.location.href = data2.url;
   } catch (err) {
     btn.textContent = original;
     btn.disabled = false;
@@ -1388,6 +1418,17 @@ function pastryIcon(){
 }
 
 /* ===================== RENDER: BROWSE GRID ===================== */
+function priceForSize(drink, size){
+  if (size === 'canned16') return drink.canned16Price;
+  if (size === 'canned12') return drink.canned12Price;
+  return drink.freshPrice;
+}
+function sizeShortLabel(size){
+  if (size === 'canned16') return '16oz Canned';
+  if (size === 'canned12') return '12oz Canned';
+  return 'Fresh Iced';
+}
+
 function renderGrid(){
   const grid = document.getElementById('drinkGrid');
   grid.innerHTML = DRINKS.map(d => `
@@ -1396,7 +1437,7 @@ function renderGrid(){
       <h3>${d.name}</h3>
       <div class="desc">${d.desc}</div>
       <div class="price-row">
-        <div class="price">$${d.freshPrice.toFixed(2)} <span>starting</span></div>
+        <div class="price">$${priceForSize(d, preferredSize).toFixed(2)} <span>${sizeShortLabel(preferredSize)}</span></div>
         <div class="qty-stepper">
           <button onclick="changeQty('${d.id}',-1)">–</button>
           <span id="qty-${d.id}">${drinkQty[d.id]}</span>
@@ -1421,7 +1462,7 @@ function defaultCustomState(drink){
   }
   return {
     drinkId: drink.id, qty: drinkQty[drink.id] || 1,
-    size:'fresh', milk:'whole', espresso:'regular', sweetness:'regular',
+    size:preferredSize, milk:'whole', espresso:'regular', sweetness:'regular',
     syrups, toppings:{}, iceLevel:'regular', subscription:(orderMode==='subscription'), notes:''
   };
 }
@@ -1620,44 +1661,16 @@ function closeCart(){
 function closeAllOverlays(){
   closeCustomize();
   closeCart();
-  document.getElementById('comparePanel').classList.remove('show');
   document.getElementById('scrim').classList.remove('show');
 }
 
-const TIER_ROWS = [
-  { label:'Classic Latte', drinkId:'classic-latte' },
-  { label:'Flavored Latte', drinkId:'vanilla-latte' },
-  { label:'Classic Matcha', drinkId:'classic-matcha' },
-  { label:'Specialty Matcha', drinkId:'teddy-graham-matcha' },
-];
-
-function openPriceCompare(){
-  document.getElementById('compareBody').innerHTML = `
-    <table class="compare-table">
-      <thead>
-        <tr>
-          <th>Drink</th>
-          <th>Fresh Iced</th>
-          <th>16oz Canned</th>
-          <th>12oz Canned</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${TIER_ROWS.map(row => {
-          const d = DRINKS.find(x => x.id === row.drinkId);
-          return `<tr>
-            <td>${row.label}</td>
-            <td>$${d.freshPrice.toFixed(2)}</td>
-            <td>$${d.canned16Price.toFixed(2)}</td>
-            <td>$${d.canned12Price.toFixed(2)}</td>
-          </tr>`;
-        }).join('')}
-      </tbody>
-    </table>
-    <p class="compare-note">Prices shown are for the flavor tier. Fresh Iced is made to order with ice. Canned drinks use the same ingredients, prepared without ice so they stay fresh in storage — just pour over ice when ready to enjoy.</p>
-  `;
-  document.getElementById('scrim').classList.add('show');
-  document.getElementById('comparePanel').classList.add('show');
+let preferredSize = 'fresh'; // 'fresh' | 'canned16' | 'canned12'
+function setPreferredSize(size){
+  preferredSize = size;
+  document.getElementById('sizeFresh').classList.toggle('active', size==='fresh');
+  document.getElementById('sizeCanned16').classList.toggle('active', size==='canned16');
+  document.getElementById('sizeCanned12').classList.toggle('active', size==='canned12');
+  if (typeof renderGrid === 'function') renderGrid();
 }
 
 function renderCart(){
