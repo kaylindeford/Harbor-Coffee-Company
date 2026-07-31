@@ -101,7 +101,7 @@ export default async function handler(req, res) {
           },
           checkout_options: {
             // Change this to your real domain once your site is live.
-            redirect_url: 'https://your-harbor-coffee-domain.com/',
+           redirect_url: 'https://harbor-coffee-company.vercel.app/',
           },
           pre_populated_data:
             customer && customer.email
